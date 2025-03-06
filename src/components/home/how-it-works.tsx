@@ -140,7 +140,7 @@ export default function HowItWorks() {
                       src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201321316185.png?updatedAt=1741214878388"
                       alt="Sign in screen"
                       fill
-                      className="object-contain"
+                      className="object-contain pointer-events-none"
                       priority
                     />
                   </div>
@@ -169,7 +169,7 @@ export default function HowItWorks() {
                       src="https://ik.imagekit.io/4pztqoubze/landing-page/Group%201000004687(1).png?updatedAt=1741216928847"
                       alt="Sign in screen"
                       fill
-                      className="object-contain"
+                      className="object-contain pointer-events-none"
                       priority
                     />
                   </div>

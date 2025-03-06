@@ -24,7 +24,7 @@ export default function ReferralSection() {
                   alt="Friends using the referral app"
                   width={600}
                   height={400}
-                  className="w-full h-auto"
+                  className="w-full h-auto pointer-events-none"
                   priority
                 />
               </div>

@@ -31,7 +31,7 @@ export default function MarketSection() {
                       alt="UAE Flag"
                       width={64}
                       height={64}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover pointer-events-none"
                     />
                   </div>
                   <span className="text-gray-800 text-base font-satoshibold font-medium">
@@ -51,7 +51,7 @@ export default function MarketSection() {
                   src="https://ik.imagekit.io/4pztqoubze/landing-page/Rectangle%202826(1).png?updatedAt=1741192791511"
                   alt="Dubai Skyline"
                   fill
-                  className="object-cover"
+                  className="object-cover pointer-events-none"
                   priority
                 />
               </motion.div>
@@ -119,7 +119,7 @@ export default function MarketSection() {
                       alt="UAE Flag"
                       width={64}
                       height={64}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover pointer-events-none"
                     />
                   </div>
                   <span className="text-gray-800 font-satoshibold text-base font-medium">
@@ -139,7 +139,7 @@ export default function MarketSection() {
                   src="https://ik.imagekit.io/4pztqoubze/landing-page/Rectangle%202826(2)(1).png?updatedAt=1741194985664"
                   alt="Dubai Skyline"
                   fill
-                  className="object-cover"
+                  className="object-cover pointer-events-none"
                   priority
                 />
               </motion.div>
