@@ -20,7 +20,7 @@ export default function FeatureAnnouncement() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-2xl md:text-[2.5rem] font-bold text-[#1F1F1F] leading-relaxed mb-5"
+              className="text-2xl md:text-[2.5rem] font-satoshibold font-bold text-[#1F1F1F] leading-relaxed mb-5"
             >
               Participating in Promotional Events
             </motion.h2>
@@ -45,9 +45,9 @@ export default function FeatureAnnouncement() {
             className="h-[576px] w-[576px]"
             style={{
               backgroundImage:
-														"url('https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000005319.png?updatedAt=1741198091078')",
-													backgroundRepeat: "no-repeat",
-													backgroundSize: "cover"
+                "url('https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000005319.png?updatedAt=1741198091078')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             }}
           ></motion.div>
         </div>

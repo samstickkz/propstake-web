@@ -46,7 +46,8 @@ export default function Hero() {
           "url('https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000005332(1).png?updatedAt=1741190910279')",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-      }}>
+      }}
+    >
       <div className="container mx-auto py-16 md:px-0 px-4">
         <div className="flex w-full md:flex-row flex-col items-center justify-between">
           {/* Left Column - Content */}
@@ -58,7 +59,7 @@ export default function Hero() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-[4rem] lg:text-[4rem] font-bold  text-black mb-10 leading-[130%]"
+              className="text-4xl md:text-[4rem] lg:text-[4rem] font-satoshibold font-bold  text-black mb-10 leading-[130%]"
             >
               Invest in <span className="text-[#1E7791]">Real Estate</span>,
               <br />
@@ -125,7 +126,7 @@ export default function Hero() {
                   src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201321316303.png?updatedAt=1741190302185"
                   alt="Mobile app splash screen"
                   fill
-                  className="object-fit"
+                  className="object-fit pointer-events-none"
                   priority
                 />
               </div>

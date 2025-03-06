@@ -21,8 +21,8 @@ export default function SectionHeader({
       title: "text-gray-900",
     },
     dark: {
-      subtitle: "text-teal-400",
-      title: "text-white",
+      subtitle: "text-[#1E7791]",
+      title: "text-black",
     },
   };
 
@@ -34,7 +34,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={`text-lg md:text-xl font-medium mb-4 ${textColors[theme].subtitle}`}
+          className={`text-lg md:text-[2rem] font-satoshibold font-medium mb-5 ${textColors[theme]?.subtitle}`}
         >
           {subtitle}
         </motion.p>
@@ -44,7 +44,7 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight ${textColors[theme].title}`}
+        className={`text-3xl md:text-[2.5rem] mb-10 text-black font-satoshibold font-bold leading-[125%] ${textColors[theme].title}`}
       >
         {title}
       </motion.h2>

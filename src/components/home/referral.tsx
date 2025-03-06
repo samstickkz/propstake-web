@@ -44,7 +44,7 @@ export default function ReferralSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <h2 className="text-3xl md:text-[2.5rem]  font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl md:text-[2.5rem] font-bold text-gray-900 mb-6 font-satoshibold">
                   Inviting Friends (Referrals)
                 </h2>
                 <p className="text-[1.5rem] text-gray-600 leading-relaxed mb-8">

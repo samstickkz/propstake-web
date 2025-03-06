@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../fonts/satoshi/Satoshi-Regular.otf') format('opentype'); /* or format('otf') */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi Bold';
+  src: url('../fonts/satoshi/Satoshi-Bold.otf') format('opentype'); /* or format('otf') */
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,7 +33,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Spline Sans", sans-serif;
+  font-family: "Satoshi", sans-serif;
 }
 
 

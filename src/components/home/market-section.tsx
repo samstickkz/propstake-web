@@ -34,7 +34,7 @@ export default function MarketSection() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-gray-800 text-base font-medium">
+                  <span className="text-gray-800 text-base font-satoshibold font-medium">
                     United Arab Emirates
                   </span>
                 </div>
@@ -68,7 +68,7 @@ export default function MarketSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="text-4xl md:text-[2.5rem] w-[70%] leading-[120%] font-bold text-gray-900 mb-6"
+                className="text-4xl md:text-[2.5rem] w-[70%] leading-[120%] font-bold text-gray-900 mb-6 font-satoshibold"
               >
                 Tap into the World Top Real Estate Markets
               </motion.h2>
@@ -90,7 +90,7 @@ export default function MarketSection() {
               >
                 <Link
                   href="/download"
-                  className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
                 >
                   Download the App
                 </Link>
@@ -122,7 +122,7 @@ export default function MarketSection() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <span className="text-gray-800 text-base font-medium">
+                  <span className="text-gray-800 font-satoshibold text-base font-medium">
                     Saudi Arabia
                   </span>
                 </div>
@@ -156,7 +156,7 @@ export default function MarketSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
-                className="text-4xl md:text-[2.5rem] w-[80%] leading-[120%] font-bold text-gray-900 mb-6"
+                className="text-4xl md:text-[2.5rem] w-[80%] leading-[120%] font-bold text-gray-900 font-satoshibold mb-6"
               >
                 Exclusive Access to a Booming Real Estate Market
               </motion.h2>
@@ -179,7 +179,7 @@ export default function MarketSection() {
               >
                 <Link
                   href="/download"
-                  className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
                 >
                   Download the App
                 </Link>

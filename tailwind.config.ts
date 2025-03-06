@@ -8,8 +8,8 @@ export default {
   ],
   theme: {
     fontFamily: {
-      rad: ["Rajdhani", "sans-serif"],
-      spline: ["Spline Sans", "sans-serif"],
+      satoshibold: ["Satoshi Bold", "sans-serif"],
+      
     },
     extend: {
       colors: {

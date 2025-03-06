@@ -62,7 +62,7 @@ export default function CTASection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl md:text-[2.25rem] font-bold text-white mb-6"
+          className="text-4xl md:text-[2.25rem] font-satoshibold font-bold text-white mb-6"
         >
           Are you a property investor?
         </motion.h2>
