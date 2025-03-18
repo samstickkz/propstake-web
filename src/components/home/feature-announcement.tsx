@@ -42,7 +42,7 @@ export default function FeatureAnnouncement() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="h-[576px] w-[576px]"
+            className="md:h-[576px] md:w-[576px] h-[250px] w-[250px]"
             style={{
               backgroundImage:
                 "url('https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000005319.png?updatedAt=1741198091078')",

@@ -38,8 +38,10 @@ export default function HowItWorks() {
       },
     },
   };
+
+	
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white md:py-24 py-18">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -52,27 +54,27 @@ export default function HowItWorks() {
           theme="dark"
         />
       </motion.div>
-      <div className="flex flex-col gap-y-24">
-        <section className="bg-[#F6F6F6] py-24 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container md:px-0 mx-auto px-4 flex flex-col md:gap-y-24">
+        <div className="bg-[#F6F6F6] md:mb-0 mb-14 md:py-24 py-10 overflow-hidden rounded-[24px] ">
+          <div className="container mx-auto md:px-14 p-6">
+            <div className="grid lg:grid-cols-2 md:gap-12 items-center">
               {/* Left Column - Content */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="max-w-xl"
+                className="md:max-w-xl"
               >
                 <motion.span
                   variants={itemVariants}
-                  className="text-xl md:text-2xl font-satoshibold text-[#1E7791] font-medium mb-4 pt-28 block"
+                  className="text-base md:text-2xl font-satoshibold text-[#1E7791] font-medium mb-4 md:text-start text-center md:pt-28 block"
                 >
                   Discover
                 </motion.span>
 
                 <motion.h1
                   variants={itemVariants}
-                  className="text-4xl md:text-[2rem] font-satoshibold lg:text-[2rem] font-bold text-gray-900 mb-6"
+                  className="text-[1.25rem] md:text-[2rem] font-satoshibold lg:text-[2rem] font-bold md:text-start text-center text-gray-900 mb-6"
                 >
                   Unlock Exclusive
                   <br />
@@ -81,7 +83,7 @@ export default function HowItWorks() {
 
                 <motion.p
                   variants={itemVariants}
-                  className="text-lg md:text-[1.3rem] text-[#5F5F5F] leading-[150%] mb-12"
+                  className="text-base md:text-[1.3rem] md:text-start text-center text-[#5F5F5F] leading-[150%] mb-12"
                 >
                   Sign up in just a few minutes and gain access to a carefully
                   curated selection of high-value properties across
@@ -90,7 +92,7 @@ export default function HowItWorks() {
 
                 <motion.div
                   variants={itemVariants}
-                  className="flex flex-wrap gap-4"
+                  className=" flex-wrap gap-4 md:flex hidden"
                 >
                   <Link
                     href="https://apps.apple.com"
@@ -103,7 +105,7 @@ export default function HowItWorks() {
                       alt="Download on the App Store"
                       width={140}
                       height={42}
-                      className=" w-[208px] h-[68px] pointer-events-none"
+                      className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                     />
                   </Link>
                   <Link
@@ -115,9 +117,9 @@ export default function HowItWorks() {
                     <Image
                       src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000002217.png?updatedAt=1741189487369"
                       alt="Get it on Google Play"
-                      width={156}
+                      width={140}
                       height={42}
-                      className=" w-[208px] h-[68px] pointer-events-none"
+                      className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                     />
                   </Link>
                 </motion.div>
@@ -133,14 +135,14 @@ export default function HowItWorks() {
                 {/* Background Phone */}
                 <motion.div
                   variants={phoneVariants}
-                  className="w-full h-[570px] absolute -top-60 md:w-full md:h-[650px]"
+                  className="w-full h-[250px] md:absolute md:-top-60 -top-10 md:w-full md:h-[650px]"
                 >
                   <div className="relative w-full h-full">
                     <Image
                       src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201321316185.png?updatedAt=1741214878388"
                       alt="Sign in screen"
                       fill
-                      className="object-contain pointer-events-none"
+                      className="md:object-contain object-fit pointer-events-none"
                       priority
                     />
                   </div>
@@ -148,10 +150,10 @@ export default function HowItWorks() {
               </motion.div>
             </div>
           </div>
-        </section>
-        <section className="bg-[#F6F6F6] py-24 overflow-hidden">
+        </div>
+        <section className="bg-[#F6F6F6] md:mb-0 mb-14 md:py-24 py-10 overflow-hidden rounded-[24px] ">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="md:grid md:grid-cols-2 flex flex-col-reverse gap-12 items-center">
               {/* Left Column - Phone Mockups */}
               <motion.div
                 initial="hidden"
@@ -162,14 +164,14 @@ export default function HowItWorks() {
                 {/* Background Phone */}
                 <motion.div
                   variants={phoneVariants}
-                  className="w-full h-[570px] absolute -top-60 md:w-full md:h-[650px]"
+                  className="w-full h-[250px] md:absolute md:-top-60 -top-10 md:w-full md:h-[650px]"
                 >
                   <div className="relative w-full h-full">
                     <Image
                       src="https://ik.imagekit.io/4pztqoubze/landing-page/Group%201000004687(1).png?updatedAt=1741216928847"
                       alt="Sign in screen"
                       fill
-                      className="object-contain pointer-events-none"
+                      className="md:object-contain object-fit pointer-events-none"
                       priority
                     />
                   </div>
@@ -184,14 +186,14 @@ export default function HowItWorks() {
               >
                 <motion.span
                   variants={itemVariants}
-                  className="text-xl font-satoshibold md:text-2xl text-[#1E7791] font-medium mb-4 pt-28 block"
+                  className="text-base md:text-start text-center font-satoshibold md:text-2xl text-[#1E7791] font-medium mb-4 md:pt-28 block"
                 >
                   Invest
                 </motion.span>
 
                 <motion.h1
                   variants={itemVariants}
-                  className="text-4xl md:text-[2rem] lg:text-[2rem] font-satoshibold font-bold  text-gray-900 mb-6"
+                  className="text-[1.25rem] md:text-[2rem] font-satoshibold lg:text-[2rem] font-bold md:text-start text-center text-gray-900 mb-6"
                 >
                   Own a Share of
                   <br />
@@ -200,7 +202,7 @@ export default function HowItWorks() {
 
                 <motion.p
                   variants={itemVariants}
-                  className="text-lg md:text-[1.3rem] text-[#5F5F5F] leading-[150%] mb-12"
+                  className="text-base md:text-[1.3rem] md:text-start text-center text-[#5F5F5F] leading-[150%] mb-12"
                 >
                   Choose from expertly vetted properties and invest with ease.
                   Your portfolio is fully managed, so you can focus on growing
@@ -209,7 +211,7 @@ export default function HowItWorks() {
 
                 <motion.div
                   variants={itemVariants}
-                  className="flex flex-wrap gap-4"
+                  className="flex items-center gap-4"
                 >
                   <Link
                     href="https://apps.apple.com"
@@ -222,7 +224,7 @@ export default function HowItWorks() {
                       alt="Download on the App Store"
                       width={140}
                       height={42}
-                      className=" w-[208px] h-[68px] pointer-events-none"
+                      className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                     />
                   </Link>
                   <Link
@@ -236,7 +238,7 @@ export default function HowItWorks() {
                       alt="Get it on Google Play"
                       width={156}
                       height={42}
-                      className=" w-[208px] h-[68px] pointer-events-none"
+                      className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                     />
                   </Link>
                 </motion.div>

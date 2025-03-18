@@ -48,7 +48,7 @@ export default function CTASection() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+ };
 
   return (
     <section className="bg-[#1E7791] py-24 px-4">

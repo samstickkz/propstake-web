@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ReferralSection() {
   return (
-    <section className="py-24 px-4 bg-white">
+    <section className="md:py-24  py-10 px-4 bg-white">
       <div className="container mx-auto">
         <div className="bg-[#F6F6F6] rounded-3xl overflow-hidden">
           <div className="grid lg:grid-cols-2 items-center">

@@ -27,7 +27,11 @@ export default function SectionHeader({
   };
 
   return (
-    <div className={`max-w-4xl mx-auto px-4 ${centered ? "text-center" : ""}`}>
+    <div
+      className={`container flex flex-col items-center mx-auto px-4 md:px-0 ${
+        centered ? "text-center" : ""
+      }`}
+    >
       {subtitle && (
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -44,7 +48,7 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className={`text-3xl md:text-[2.5rem] mb-10 text-black font-satoshibold font-bold leading-[125%] ${textColors[theme].title}`}
+        className={`text-[1.75rem] md:text-[2.5rem] mb-10 text-black font-satoshibold font-bold md:w-[50%] leading-[125%] ${textColors[theme].title}`}
       >
         {title}
       </motion.h2>

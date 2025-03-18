@@ -40,7 +40,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[85vh] bg-white overflow-hidden"
+      className="relative md:min-h-[85vh] bg-white overflow-hidden"
       style={{
         backgroundImage:
           "url('https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000005332(1).png?updatedAt=1741190910279')",
@@ -48,18 +48,18 @@ export default function Hero() {
         backgroundSize: "cover",
       }}
     >
-      <div className="container mx-auto py-16 md:px-0 px-4">
+      <div className="container mx-auto md:py-16 py-10 md:px-0 px-4">
         <div className="flex w-full md:flex-row flex-col items-center justify-between">
           {/* Left Column - Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-1/2"
+            className="md:w-1/2 w-full"
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-[4rem] lg:text-[4rem] font-satoshibold font-bold  text-black mb-10 leading-[130%]"
+              className="text-[2.5rem] md:text-[4rem] font-satoshibold font-bold  text-black md:mb-10 mb-4 leading-[130%]"
             >
               Invest in <span className="text-[#1E7791]">Real Estate</span>,
               <br />
@@ -70,7 +70,7 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-black font-medium mb-8 max-w-2xl"
+              className="text-[1.125rem] md:text-xl text-black font-medium mb-8 md:max-w-2xl w-full"
             >
               Fractional ownership in prime properties.
               <br />
@@ -92,7 +92,7 @@ export default function Hero() {
                   alt="Download on the App Store"
                   width={140}
                   height={42}
-                  className=" w-[208px] h-[68px] pointer-events-none"
+                  className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                 />
               </Link>
               <Link
@@ -104,9 +104,9 @@ export default function Hero() {
                 <Image
                   src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201000002217.png?updatedAt=1741189487369"
                   alt="Get it on Google Play"
-                  width={156}
+                  width={140}
                   height={42}
-                  className=" w-[208px] h-[68px] pointer-events-none"
+                  className="md:w-[208px] w-[150px] md:h-[68px] h-[48px] pointer-events-none"
                 />
               </Link>
             </motion.div>
@@ -117,16 +117,16 @@ export default function Hero() {
             variants={phoneVariants}
             initial="hidden"
             animate="visible"
-            className="w-1/2"
+            className="md:w-1/2 w-full md:mt-0 relative mt-14"
           >
             {/* Background Phone */}
             <div className=" w-full">
-              <div className="relative w-full md:h-[640px] left-24 md:w-[70%] ">
+              <div className="md:relative md:h-[640px] h-[450px] md:left-24 md:w-[70%] w-full">
                 <Image
                   src="https://ik.imagekit.io/4pztqoubze/landing-page/Frame%201321316303.png?updatedAt=1741190302185"
                   alt="Mobile app splash screen"
                   fill
-                  className="object-fit pointer-events-none"
+                  className="md:object-fit object-contain pointer-events-none"
                   priority
                 />
               </div>
