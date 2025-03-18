@@ -51,7 +51,7 @@ export default function CTASection() {
  };
 
   return (
-    <section className="bg-[#1E7791] py-24 px-4">
+    <section className="bg-[#1E7791] md:py-24 py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function CTASection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl md:text-[2.25rem] font-satoshibold font-bold text-white mb-6"
+          className="text-[1.125rem] md:text-[2.25rem] font-satoshibold font-bold text-white mb-6"
         >
           Are you a property investor?
         </motion.h2>
@@ -71,7 +71,7 @@ export default function CTASection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto"
+          className="text-sm md:text-xl text-white/90 mb-12 max-w-2xl mx-auto"
         >
           Unlock exclusive insights to grow your portfolio, maximize returns,
           and secure verified ownership. No spam—just value.
@@ -82,9 +82,9 @@ export default function CTASection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
+          <form onSubmit={handleSubmit} className="md:max-w-xl mx-auto">
             <div
-              className={`flex flex-col sm:flex-row bg-white p-3 rounded-md gap-3 ${
+              className={`flex flex-row bg-white md:p-3 p-2 rounded-md gap-3 ${
                 error ? "border-[1.5px] border-red-500" : ""
               }`}
             >
@@ -94,14 +94,14 @@ export default function CTASection() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className={`w-full px-2 py-3 rounded-lg text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring-0 `}
+                  className={`w-full md:px-2 px-1 py-3 rounded-lg text-gray-900 placeholder-gray-500 bg-white focus:outline-none focus:ring-0 `}
                   disabled={isSubmitting || isSuccess}
                 />
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting || isSuccess}
-                className="px-8 py-3 rounded-lg bg-[#1E7791] text-white font-medium hover:bg-[#1E7791] focus:outline-none focus:ring-2 focus:ring-[#1E7791] focus:ring-offset-2 focus:ring-offset-[#1E7791] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                className="md:px-8 px-4 py-3 rounded-lg bg-[#1E7791] text-white font-medium hover:bg-[#1E7791] focus:outline-none focus:ring-2 focus:ring-[#1E7791] focus:ring-offset-2 focus:ring-offset-[#1E7791] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               >
                 {isSubmitting ? (
                   <Loader2 className="w-5 h-5 animate-spin" />

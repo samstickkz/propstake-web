@@ -3,18 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RiBankFill } from "react-icons/ri";
+import { motion } from "framer-motion";
 
 export default function WealthSecuritySection() {
   return (
-    <section className="bg-black text-white py-24 px-4">
+    <section className="bg-black text-white md:py-24 py-12 px-4">
       <div className="container md:px-0 px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h3 className="text-lg font-medium mb-4">Safeguarding Your Wealth</h3>
-          <h2 className="text-3xl md:text-[2.25rem] font-bold mb-6 max-w-3xl mx-auto">
+          <h3 className="md:text-lg text-base font-medium mb-4">
+            Safeguarding Your Wealth
+          </h3>
+          <h2 className="text-[1.125rem] md:text-[2.25rem] font-bold mb-6 max-w-3xl mx-auto">
             We prioritize your trust as much as your investments.
           </h2>
-          <p className="text-white">
+          <p className="text-white md:text-base text-sm">
             423K+ real estate investors earned 14.1% returns in 2024, join them
           </p>
         </div>
@@ -30,17 +33,17 @@ export default function WealthSecuritySection() {
                 </div>
               </div>
 
-              <h3 className="text-2xl md:text-[2rem] font-bold mb-4">
+              <h3 className="text-[1.125rem] md:text-[2rem] font-bold mb-4">
                 Secure Ownership Verification
               </h3>
 
-              <p className="text-gray-400 text-[1.5rem]">
+              <p className="text-gray-400 md:text-[1.5rem] text-base md:leading-9 leading-7">
                 Invest with confidence—receive verifiable ownership documents
                 issued by globally recognized authorities and leading financial
                 institutions.
               </p>
 
-              <div className="mt-7">
+              <div className="mt-7 md:block hidden">
                 <Link
                   href="/download"
                   className="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-[#1E7791]"
@@ -53,7 +56,7 @@ export default function WealthSecuritySection() {
             {/* Right Column */}
             <div className="space-y-6">
               {/* UAE Certificate Card */}
-              <div className="border-[0.5px] border-white rounded-2xl p-6">
+              <div className="border-[0.5px] border-white rounded-2xl md:p-6 p-4">
                 <div className="mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-black border border-gray-700 rounded-full">
                     <Image
@@ -63,15 +66,17 @@ export default function WealthSecuritySection() {
                       height={20}
                       className="rounded-full"
                     />
-                    <span className="text-sm">United Arab Emirates</span>
+                    <span className="md:text-sm text-xs">
+                      United Arab Emirates
+                    </span>
                   </div>
                 </div>
 
-                <h4 className="text-[1.5rem] text-white font-bold mb-4">
+                <h4 className="md:text-[1.5rem] text-sm text-white font-bold mb-4">
                   Verified Certificates & Title Deeds
                 </h4>
 
-                <p className="text-white font-regular text-[1.5rem] ">
+                <p className="text-white font-regular  md:text-[1.25rem] text-sm md:leading-9 leading-7">
                   Ownership certificates are backed by top financial hubs,
                   ensuring legitimacy and security for all investors.
                 </p>
@@ -88,20 +93,33 @@ export default function WealthSecuritySection() {
                       height={20}
                       className="rounded-full"
                     />
-                    <span className="text-sm">Saudi Arabia</span>
+                    <span className="md:text-sm text-xs">Saudi Arabia</span>
                   </div>
                 </div>
 
-                <h4 className="text-[1.5rem] font-bold mb-4">
+                <h4 className="md:text-[1.5rem] text-sm text-white font-bold mb-4">
                   Fund Unit Certificates & Registries
                 </h4>
 
-                <p className="text-white font-regular text-[1.5rem]">
+                <p className="text-white font-regular md:text-[1.25rem] text-sm md:leading-9 leading-7">
                   Official fund unit certificates and registries are provided by
                   accredited financial administrators, ensuring full
                   transparency and compliance.
                 </p>
               </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="md:hidden flex md:items-start items-center md:justify-start justify-center"
+              >
+                <Link
+                  href="/download"
+                  className="inline-flex items-center md:px-6 px-4 md:py-3 py-2 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
+                >
+                  Download the App
+                </Link>
+              </motion.div>
             </div>
           </div>
         </div>

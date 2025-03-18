@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ReferralSection() {
   return (
@@ -36,7 +37,7 @@ export default function ReferralSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="p-8 lg:p-16"
+              className="p-6 md:p-16"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -44,13 +45,26 @@ export default function ReferralSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <h2 className="text-3xl md:text-[2.5rem] font-bold text-gray-900 mb-6 font-satoshibold">
+                <h2 className="text-[1.125rem] md:text-start text-center md:text-[2.5rem] font-bold text-gray-900 mb-6 font-satoshibold">
                   Inviting Friends (Referrals)
                 </h2>
-                <p className="text-[1.5rem] text-gray-600 leading-relaxed mb-8">
+                <p className="md:text-[1.5rem] text-base md:text-start text-center text-gray-600 leading-relaxed mb-8">
                   Share your unique code and get rewarded every time a friend
                   joins. Multiply your earnings simply by spreading the word.
                 </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  className="flex md:items-start items-center md:justify-start justify-center"
+                >
+                  <Link
+                    href="/download"
+                    className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
+                  >
+                    Download the App
+                  </Link>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>

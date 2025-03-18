@@ -58,7 +58,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-gray-200">
       <div className="container mx-auto px-4 md:px-0 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
+        <div className="md:grid flex flex-col md:grid-cols-6 gap-8">
           {/* Logo Column */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
@@ -74,7 +74,10 @@ export default function Footer() {
           {/* Link Columns */}
           {footerLinks.map((column) => (
             <div key={column.title} className="col-span-1">
-              <h3 className="text-black text-base font-extrabold mb-4">
+              <h3
+                className="text-black text-base font-extrabold mb-4"
+                style={{ fontWeight: "900" }}
+              >
                 {column.title}
               </h3>
               <ul className="space-y-3">

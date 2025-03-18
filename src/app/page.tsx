@@ -22,8 +22,9 @@ export default function Home() {
         {/* <PropertyInvestmentShowcase /> */}
         <ReferralSection />
         <FeatureAnnouncement />
-        <CTASection />
+
         <WealthSecuritySection />
+        <CTASection />
       </PageLayout>
     </div>
   );

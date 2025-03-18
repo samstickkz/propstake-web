@@ -152,7 +152,7 @@ export default function InvestmentMetrics() {
         </div>
 
         {/* Bottom Row - Additional Metrics */}
-        <div className="md:grid md:grid-cols-2 md:gap-[73px] md:space-y-0 space-y-6 md:mt-[73px] mt-6">
+        <div className="md:grid md:grid-cols-3 md:gap-[73px] md:space-y-0 space-y-6 md:mt-[73px] mt-6">
           {metrics.slice(2).map((metric, index) => (
             <MetricCard key={index + 2} metric={metric} index={index + 2} />
           ))}
