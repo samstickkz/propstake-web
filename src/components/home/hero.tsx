@@ -59,13 +59,10 @@ export default function Hero() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-[2.5rem] md:text-[4rem] font-satoshibold font-bold  text-black md:mb-10 mb-4 leading-[130%]"
+              className="text-[2rem] md:text-[4rem] font-satoshibold font-bold  text-black md:mb-10 mb-4 leading-[130%] md:w-[80%] w-full"
             >
               Invest in <span className="text-[#1E7791]">Real Estate</span>,
-              <br />
-              Build Wealth
-              <br />
-              Effortlessly
+              Build Wealth Effortlessly
             </motion.h1>
 
             <motion.p
@@ -74,12 +71,12 @@ export default function Hero() {
             >
               Fractional ownership in prime properties.
               <br />
-              Earn passive income with as little as $50.
+              Earn passive income with as little as N50,000
             </motion.p>
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 w-full"
             >
               <Link
                 href="https://apps.apple.com"
@@ -96,7 +93,7 @@ export default function Hero() {
                 />
               </Link>
               <Link
-                href="https://play.google.com"
+                href="https://play.google.com/store/apps/details?id=com.prostake.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-transform hover:scale-105"

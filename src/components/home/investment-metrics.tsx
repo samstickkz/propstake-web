@@ -136,7 +136,7 @@ export default function InvestmentMetrics() {
 
             <motion.h2
               variants={itemVariants}
-              className="text-[1.25rem] md:text-[2.25rem] font-bold text-black md:leading-10 leading-7"
+              className="text-[1.25rem] md:text-[2.25rem] font-bold text-black md:leading-[140%] leading-7"
             >
               Invest in high-growth properties across multiple regions and asset
               types, all from one platform.
@@ -202,7 +202,7 @@ function MetricCard({ metric, index }: MetricCardProps) {
           suffix={getSuffix()}
         />
       </div>
-      <div className="text-[#5F5F5F] md:text-[1.5rem] text-base">{metric.label}</div>
+      <div className="text-[#5F5F5F] md:text-[1.5rem] text-base md:leading-9 leading-7">{metric.label}</div>
     </motion.div>
   );
 }

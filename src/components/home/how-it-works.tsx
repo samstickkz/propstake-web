@@ -6,6 +6,8 @@ import Link from "next/link";
 import SectionHeader from "./section-header";
 
 export default function HowItWorks() {
+
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -55,7 +57,7 @@ export default function HowItWorks() {
         />
       </motion.div>
       <div className="container md:px-0 mx-auto px-4 flex flex-col md:gap-y-24">
-        <div className="bg-[#F6F6F6] md:mb-0 mb-14 md:py-24 py-10 overflow-hidden rounded-[24px] ">
+        <div className="bg-[#F6F6F6] md:mb-0 mb-14 md:py-24 py-10 overflow-hidden rounded-[24px] md:min-h-full min-h-[70vh]">
           <div className="container mx-auto md:px-14 p-6">
             <div className="grid lg:grid-cols-2 md:gap-12 items-center">
               {/* Left Column - Content */}
@@ -92,7 +94,7 @@ export default function HowItWorks() {
 
                 <motion.div
                   variants={itemVariants}
-                  className=" flex-wrap gap-4 md:flex hidden"
+                  className=" flex-wrap gap-4 md:flex hidden "
                 >
                   <Link
                     href="https://apps.apple.com"
@@ -109,7 +111,7 @@ export default function HowItWorks() {
                     />
                   </Link>
                   <Link
-                    href="https://play.google.com"
+                    href="https://play.google.com/store/apps/details?id=com.prostake.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-transform hover:scale-105"
@@ -135,7 +137,7 @@ export default function HowItWorks() {
                 {/* Background Phone */}
                 <motion.div
                   variants={phoneVariants}
-                  className="w-full h-[250px] md:absolute md:-top-60 -top-10 md:w-full md:h-[650px]"
+                  className="w-full h-[250px] absolute md:-top-60 top-10 md:w-full md:h-[650px]"
                 >
                   <div className="relative w-full h-full">
                     <Image
@@ -211,7 +213,7 @@ export default function HowItWorks() {
 
                 <motion.div
                   variants={itemVariants}
-                  className="flex items-center gap-4"
+                  className="flex items-center gap-4 md:mx-0 mx-auto w-full"
                 >
                   <Link
                     href="https://apps.apple.com"
@@ -228,7 +230,7 @@ export default function HowItWorks() {
                     />
                   </Link>
                   <Link
-                    href="https://play.google.com"
+                    href="https://play.google.com/store/apps/details?id=com.prostake.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-transform hover:scale-105"

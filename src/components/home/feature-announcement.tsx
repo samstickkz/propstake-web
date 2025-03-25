@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function FeatureAnnouncement() {
   return (
-    <section className="bg-white md:py-24 py-12 md:px-4 px-0">
+    <section className="bg-white md:py-24 py-12 md:px-0 px-4">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 md:gap-24 gap-12 items-center justify-between w-full">
           {/* Text Content */}

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function WealthSecuritySection() {
   return (
-    <section className="bg-black text-white md:py-24 py-12 px-4">
+    <section className="bg-black text-white md:py-24 py-12">
       <div className="container md:px-0 px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -23,7 +23,7 @@ export default function WealthSecuritySection() {
         </div>
 
         {/* Main Content Card */}
-        <div className="border-[0.5px] border-white rounded-3xl p-8 md:p-20">
+        <div className="border-[0.5px] border-gray-500/80 rounded-3xl p-6 md:p-20">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left Column */}
             <div className="flex flex-col md:pt-12">
@@ -45,7 +45,7 @@ export default function WealthSecuritySection() {
 
               <div className="mt-7 md:block hidden">
                 <Link
-                  href="/download"
+                  href="https://play.google.com/store/apps/details?id=com.prostake.app"
                   className="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-[#1E7791]"
                 >
                   Download the App
@@ -56,7 +56,7 @@ export default function WealthSecuritySection() {
             {/* Right Column */}
             <div className="space-y-6">
               {/* UAE Certificate Card */}
-              <div className="border-[0.5px] border-white rounded-2xl md:p-6 p-4">
+              <div className="border-[0.5px] border-gray-500/80 rounded-2xl md:p-6 p-4">
                 <div className="mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-black border border-gray-700 rounded-full">
                     <Image
@@ -83,7 +83,7 @@ export default function WealthSecuritySection() {
               </div>
 
               {/* Saudi Arabia Fund Card */}
-              <div className="border-[0.5px] border-white rounded-2xl p-6">
+              <div className="border-[0.5px] border-gray-500/80 rounded-2xl p-6">
                 <div className="mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-black border border-gray-700 rounded-full">
                     <Image
@@ -114,7 +114,7 @@ export default function WealthSecuritySection() {
                 className="md:hidden flex md:items-start items-center md:justify-start justify-center"
               >
                 <Link
-                  href="/download"
+                  href="https://play.google.com/store/apps/details?id=com.prostake.app"
                   className="inline-flex items-center md:px-6 px-4 md:py-3 py-2 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
                 >
                   Download the App
