@@ -87,13 +87,13 @@ export default function WealthSecuritySection() {
                 <div className="mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-black border border-gray-700 rounded-full">
                     <Image
-                      src="https://ik.imagekit.io/4pztqoubze/landing-page/saudi%20arabia.png?updatedAt=1741194736893"
+                      src="https://res.cloudinary.com/dxwxyv9ry/image/upload/v1727526602/b3ccc9k2ibrclmiequxt.webp"
                       alt="Saudi Arabia Flag"
                       width={20}
                       height={20}
                       className="rounded-full"
                     />
-                    <span className="md:text-sm text-xs">Saudi Arabia</span>
+                    <span className="md:text-sm text-xs">Nigeria</span>
                   </div>
                 </div>
 

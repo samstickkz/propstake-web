@@ -24,8 +24,8 @@ const footerLinks = [
   {
     title: "Visa Programs",
     links: [
-      { name: "Golden", href: "/visa/golden" },
-      { name: "Retirement Plan", href: "/visa/retirement" },
+      { name: "Golden", href: "https://travelexpore.com/" },
+      { name: "Retirement Plan", href: "https://travelexpore.com/" },
     ],
   },
   {
@@ -48,9 +48,18 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com" },
-  { icon: Instagram, href: "https://instagram.com" },
-  { icon: Twitter, href: "https://twitter.com" },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/share/1ATbYobPRR/",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/npj_homes?igsh=OXFxMWVvZDh2czV0",
+  },
+  {
+    icon: Twitter,
+    href: "https://x.com/NPJ_Homes?t=zjRQAlovzJY5hvVmS5FK-Q&s=09",
+  },
   { icon: Linkedin, href: "https://linkedin.com" },
 ];
 
