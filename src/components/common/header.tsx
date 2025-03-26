@@ -200,6 +200,7 @@ export default function Navbar() {
               {/* Download App Button */}
               <Link
                 href="https://play.google.com/store/apps/details?id=com.prostake.app"
+                target="_blank"
                 className="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-[#1E7791]"
               >
                 Download the App
@@ -313,7 +314,8 @@ export default function Navbar() {
             <div className="pt-2 pb-4">
               <Link
                 href="https://play.google.com/store/apps/details?id=com.prostake.app"
-                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-teal-700"
+                target="_blank"
+                className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-[#1E7791]"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Download the App

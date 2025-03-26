@@ -46,6 +46,7 @@ export default function WealthSecuritySection() {
               <div className="mt-7 md:block hidden">
                 <Link
                   href="https://play.google.com/store/apps/details?id=com.prostake.app"
+                  target="_blank"
                   className="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white font-satoshibold bg-[#1E7791] hover:bg-[#1E7791]"
                 >
                   Download the App
@@ -115,6 +116,7 @@ export default function WealthSecuritySection() {
               >
                 <Link
                   href="https://play.google.com/store/apps/details?id=com.prostake.app"
+                  target="_blank"
                   className="inline-flex items-center md:px-6 px-4 md:py-3 py-2 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
                 >
                   Download the App

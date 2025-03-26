@@ -60,6 +60,7 @@ export default function ReferralSection() {
                 >
                   <Link
                     href="https://play.google.com/store/apps/details?id=com.prostake.app"
+                    target="_blank"
                     className="inline-flex items-center px-6 py-3 rounded-lg  text-white text-base font-medium bg-[#1E7791] hover:bg-[#1E7791] transition-colors font-satoshibold duration-200"
                   >
                     Download the App
