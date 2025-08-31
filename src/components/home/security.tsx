@@ -17,9 +17,9 @@ export default function WealthSecuritySection() {
           <h2 className="text-[1.125rem] md:text-[2.25rem] font-bold mb-6 max-w-3xl mx-auto">
             We prioritize your trust as much as your investments.
           </h2>
-          <p className="text-white md:text-base text-sm">
+          {/* <p className="text-white md:text-base text-sm">
             423K+ real estate investors earned 14.1% returns in 2024, join them
-          </p>
+          </p> */}
         </div>
 
         {/* Main Content Card */}

@@ -3,7 +3,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
@@ -22,6 +21,7 @@ export default function CTASection() {
       );
   };
 
+  // --- THIS IS THE CORRECTED FUNCTION ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -39,16 +39,29 @@ export default function CTASection() {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+
       setIsSuccess(true);
       setEmail("");
+
     } catch (error: any) {
-      setError("Something went wrong. Please try again.");
+      setError(error.message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
- };
+  };
+  // ------------------------------------
 
   return (
     <section className="bg-[#1E7791] md:py-24 py-12">
@@ -66,7 +79,6 @@ export default function CTASection() {
         >
           Are you a property investor?
         </motion.h2>
-
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,7 +88,6 @@ export default function CTASection() {
           Unlock exclusive insights to grow your portfolio, maximize returns,
           and secure verified ownership. No spam—just value.
         </motion.p>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,7 +133,6 @@ export default function CTASection() {
               </motion.p>
             )}
           </form>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
