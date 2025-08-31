@@ -52,7 +52,7 @@ export default function HowItWorks() {
       >
         <SectionHeader
           subtitle="How it works"
-          title="Grow Your Wealth with Hassle-Free Real Estate Investments"
+          title="Grow Your Wealth Without Breaking Your Bank"
           theme="dark"
         />
       </motion.div>
@@ -87,9 +87,9 @@ export default function HowItWorks() {
                   variants={itemVariants}
                   className="text-base md:text-[1.3rem] md:text-start text-center text-[#5F5F5F] leading-[150%] mb-12"
                 >
-                  Sign up in just a few minutes and gain access to a carefully
+                  Sign up in just a few Seconds and gain access to a carefully
                   curated selection of high-value properties across
-                  top-performing markets.
+                  top-performing markets, make deposit and start earning for life.
                 </motion.p>
 
                 <motion.div
@@ -190,7 +190,7 @@ export default function HowItWorks() {
                   variants={itemVariants}
                   className="text-base md:text-start text-center font-satoshibold md:text-2xl text-[#1E7791] font-medium mb-4 md:pt-28 block"
                 >
-                  Invest
+                  Invest Now, Earn Forever
                 </motion.span>
 
                 <motion.h1
