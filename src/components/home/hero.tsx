@@ -69,9 +69,9 @@ export default function Hero() {
               variants={itemVariants}
               className="text-[1.125rem] md:text-xl text-black font-medium mb-8 md:max-w-2xl w-full"
             >
-              Fractional ownership in prime properties.
+              Invest ones, earn for a lifetime in Dollars
               <br />
-              Earn passive income with as little as N50,000
+              Become as landlord with as little as N50,000
             </motion.p>
 
             <motion.div

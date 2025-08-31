@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
   {
     label: "Investments",
     href: "/investments",
-    hasDropdown: true,
+    hasDropdown: false,
     dropdownItems: [
       { label: "Stocks", href: "/investments/stocks" },
       { label: "Real Estate", href: "/investments/real-estate" },
@@ -68,7 +68,7 @@ const navItems: NavItem[] = [
   {
     label: "Learn",
     href: "/learn",
-    hasDropdown: true,
+    hasDropdown: false,
     dropdownItems: [
       { label: "Articles", href: "/learn/articles" },
       { label: "Guides", href: "/learn/guides" },
