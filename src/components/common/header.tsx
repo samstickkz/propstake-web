@@ -7,12 +7,24 @@ import { ChevronDown, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
+// === START: CHANGE 1 (Update Type Definitions) ===
+// Create a specific type for dropdown items
+interface DropdownItem {
+  label: string;
+  href: string;
+  target?: string;
+  rel?: string;
+}
+
 interface NavItem {
   label: string;
   href: string;
   hasDropdown?: boolean;
-  dropdownItems?: { label: string; href: string }[];
+  dropdownItems?: DropdownItem[]; // Use the new DropdownItem type
+  target?: string;
+  rel?: string;
 }
+// === END: CHANGE 1 ===
 
 const navItems: NavItem[] = [
   {
@@ -28,25 +40,30 @@ const navItems: NavItem[] = [
   {
     label: "Automation",
     href: "/automation",
+    hasDropdown: false,
   },
   {
     label: "Visa Programs",
-    href: "/visa-programs",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Business Visa", href: "/visa-programs/business" },
-      { label: "Investor Visa", href: "/visa-programs/investor" },
-      { label: "Work Visa", href: "/visa-programs/work" },
-    ],
+    href: "https://travelexpore.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    hasDropdown: false,
   },
   {
     label: "Sell",
     href: "/sell",
     hasDropdown: true,
+    // === START: CHANGE 2 (Update "List Property" Item) ===
     dropdownItems: [
-      { label: "List Property", href: "/sell/property" },
+      {
+        label: "List Property",
+        href: "https://forms.gle/eEaFuv2WNRQ9Bt2x9",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
       { label: "Sell Business", href: "/sell/business" },
     ],
+    // === END: CHANGE 2 ===
   },
   {
     label: "Learn",
@@ -74,11 +91,7 @@ export default function Navbar() {
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
   const toggleDropdown = (label: string) => {
-    if (activeDropdown === label) {
-      setActiveDropdown(null);
-    } else {
-      setActiveDropdown(label);
-    }
+    setActiveDropdown(activeDropdown === label ? null : label);
   };
 
   const toggleLanguageDropdown = () => {
@@ -110,20 +123,29 @@ export default function Navbar() {
           <nav className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) => (
               <div key={item.label} className="relative group">
-                <button
-                  className="inline-flex items-center px-1 pt-1 text-base font-medium text-gray-900 hover:text-teal-600"
-                  onClick={() => item.hasDropdown && toggleDropdown(item.label)}
-                >
-                  {item.label}
-                  {item.hasDropdown && (
+                {item.hasDropdown ? (
+                  <button
+                    className="inline-flex items-center px-1 pt-1 text-base font-medium text-gray-900 hover:text-teal-600"
+                    onClick={() => toggleDropdown(item.label)}
+                  >
+                    {item.label}
                     <ChevronDown
                       className={cn(
                         "ml-1 h-4 w-4 transition-transform duration-200",
                         activeDropdown === item.label ? "rotate-180" : ""
                       )}
                     />
-                  )}
-                </button>
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    target={item.target}
+                    rel={item.rel}
+                    className="inline-flex items-center px-1 pt-1 text-base font-medium text-gray-900 hover:text-teal-600"
+                  >
+                    {item.label}
+                  </Link>
+                )}
 
                 {/* Dropdown Menu */}
                 {item.hasDropdown && activeDropdown === item.label && (
@@ -136,14 +158,18 @@ export default function Navbar() {
                   >
                     <div className="py-1">
                       {item.dropdownItems?.map((dropdownItem) => (
+                        // === START: CHANGE 3 (Desktop Link) ===
                         <Link
                           key={dropdownItem.label}
                           href={dropdownItem.href}
+                          target={dropdownItem.target}
+                          rel={dropdownItem.rel}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           onClick={() => setActiveDropdown(null)}
                         >
                           {dropdownItem.label}
                         </Link>
+                        // === END: CHANGE 3 ===
                       ))}
                     </div>
                   </motion.div>
@@ -238,33 +264,47 @@ export default function Navbar() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <div key={item.label}>
-                <button
-                  className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
-                  onClick={() => item.hasDropdown && toggleDropdown(item.label)}
-                >
-                  {item.label}
-                  {item.hasDropdown && (
+                {item.hasDropdown ? (
+                  <button
+                    className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                    onClick={() => toggleDropdown(item.label)}
+                  >
+                    {item.label}
                     <ChevronDown
                       className={cn(
                         "ml-1 h-4 w-4 transition-transform duration-200",
                         activeDropdown === item.label ? "rotate-180" : ""
                       )}
                     />
-                  )}
-                </button>
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    target={item.target}
+                    rel={item.rel}
+                    className="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
 
                 {/* Mobile Dropdown */}
                 {item.hasDropdown && activeDropdown === item.label && (
                   <div className="pl-4 space-y-1">
                     {item.dropdownItems?.map((dropdownItem) => (
+                      // === START: CHANGE 3 (Mobile Link) ===
                       <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
+                        target={dropdownItem.target}
+                        rel={dropdownItem.rel}
                         className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {dropdownItem.label}
                       </Link>
+                      // === END: CHANGE 3 ===
                     ))}
                   </div>
                 )}
