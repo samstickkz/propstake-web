@@ -21,7 +21,7 @@ export default function Home() {
         <MarketSection />
         {/* <PropertyInvestmentShowcase /> */}
         <ReferralSection />
-        <FeatureAnnouncement />
+        {/* <FeatureAnnouncement /> */}
 
         <WealthSecuritySection />
         <CTASection />
