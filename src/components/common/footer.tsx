@@ -41,7 +41,7 @@ const footerLinks = [
     links: [
       { name: "About us", href: "/about" },
       { name: "How it works", href: "/how-it-works" },
-      { name: "Contact", href: "/contact" },
+      { name: "Contact", href: "https://wa.link/ionezt" },
       { name: "Investors", href: "/investors" },
     ],
   },
