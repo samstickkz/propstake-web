@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay"; // <-- 1. IMPORT THE PLUGIN
+// FIX: Import the type directly from the core library
+import { type EmblaCarouselType } from 'embla-carousel';
+import Autoplay from "embla-carousel-autoplay";
 import { DotButton, PrevButton, NextButton } from "./EmblaCarouselButtons";
 
 const marketsData = [
@@ -32,35 +34,33 @@ const marketsData = [
 ];
 
 export default function MarketSection() {
-  // 2. PASS THE PLUGIN TO THE HOOK WITH YOUR DESIRED OPTIONS
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true }, 
-    [Autoplay({ delay: 5000, stopOnInteraction: false })]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
+  ]);
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState([]);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
+  const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
+  // FIX: Use the correctly imported EmblaCarouselType
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
     setSelectedIndex(emblaApi.selectedScrollSnap());
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
-  }, [emblaApi, setSelectedIndex]);
+  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
+    onSelect(emblaApi);
     setScrollSnaps(emblaApi.scrollSnapList());
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
-  }, [emblaApi, setScrollSnaps, onSelect]);
+  }, [emblaApi, onSelect]);
 
   return (
     <div className="relative md:min-h-screen h-full overflow-hidden">
