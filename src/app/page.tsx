@@ -4,7 +4,6 @@ import PageLayout from "@/components/layouts/page-layout";
 import Hero from "@/components/home/hero";
 import MarketSection from "@/components/home/market-section";
 import CTASection from "@/components/home/cta";
-import FeatureAnnouncement from "@/components/home/feature-announcement";
 import ReferralSection from "@/components/home/referral";
 import HowItWorks from "@/components/home/how-it-works";
 import WealthSecuritySection from "@/components/home/security";
