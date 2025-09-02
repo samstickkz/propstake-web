@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     "short-term rental property",
     "real estate wealth building",
     "global property diversification"
-  ]
+  ],
   
 
   // --- Open Graph (for social sharing on Facebook, LinkedIn, etc.) ---
