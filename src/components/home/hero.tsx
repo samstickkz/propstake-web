@@ -62,7 +62,7 @@ export default function Hero() {
               className="text-[2rem] md:text-[4rem] font-satoshibold font-bold  text-black md:mb-10 mb-4 leading-[130%] md:w-[80%] w-full"
             >
               Invest in <span className="text-[#1E7791]">Real Estate</span>,
-              Build Wealth Effortlessly
+              Build Wealth Globally
             </motion.h1>
 
             <motion.p
