@@ -71,7 +71,7 @@ export default function Hero() {
             >
               Invest ones, earn for a lifetime in Dollars
               <br />
-              Become as landlord with as little as N50,000
+              Become a landlord with as little as N50,000
             </motion.p>
 
             <motion.div
