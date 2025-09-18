@@ -66,7 +66,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Learn",
-    href: "/learn",
+    href: "#",
     hasDropdown: false,
     dropdownItems: [
       { label: "Articles", href: "/learn/articles" },
