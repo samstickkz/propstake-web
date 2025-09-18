@@ -60,7 +60,10 @@ const socialLinks = [
     icon: Twitter,
     href: "https://x.com/NPJ_Homes?t=zjRQAlovzJY5hvVmS5FK-Q&s=09",
   },
-  { icon: Linkedin, href: "https://linkedin.com" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/company/propstake/?viewAsMember=true",
+  },
 ];
 
 export default function Footer() {

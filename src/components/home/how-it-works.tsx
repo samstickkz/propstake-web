@@ -6,8 +6,6 @@ import Link from "next/link";
 import SectionHeader from "./section-header";
 
 export default function HowItWorks() {
-
-  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,7 +39,6 @@ export default function HowItWorks() {
     },
   };
 
-	
   return (
     <section className="bg-white md:py-24 py-18">
       <motion.div
@@ -87,9 +84,22 @@ export default function HowItWorks() {
                   variants={itemVariants}
                   className="text-base md:text-[1.3rem] md:text-start text-center text-[#5F5F5F] leading-[150%] mb-12"
                 >
-                  Sign up in just a few Seconds and gain access to a carefully
-                  curated selection of high-value properties across
-                  top-performing markets, make deposit and start earning for life.
+                  Your journey starts with as little as ₦50,000. Our team
+                  carefully selects each property for direct purchase or
+                  crowdfunding, giving you the flexibility to build a robust
+                  portfolio.
+                  <br />
+                  <br />
+                  With two completed projects in Nigeria, our track record
+                  speaks for itself.{" "}
+                  <Link
+                    href="https://www.google.com/search?q=npj+service+Apartment&oq=npj&gs_lcrp=EgZjaHJvbWUqBggEEEUYOzIGCAAQRRg9MgYIARBFGDkyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPTIGCAYQRRg80gEIMzIzMWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8&zx=1758153499130&no_sw_cr=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1E7791] underline hover:no-underline"
+                  >
+                    Explore Our Projects. (NPJ Service Apartments)
+                  </Link>
                 </motion.p>
 
                 <motion.div
