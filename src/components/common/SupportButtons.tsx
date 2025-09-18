@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 export default function SupportButtons() {
   return (
