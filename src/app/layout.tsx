@@ -131,7 +131,7 @@ export default function RootLayout({
         {children}
         <Analytics />
 
-        {/* 👇 Tawk.to Script */}
+        {/* 👇 Tawk.to Script ghg*/}
         <Script
           id="tawk-to"
           strategy="afterInteractive"
