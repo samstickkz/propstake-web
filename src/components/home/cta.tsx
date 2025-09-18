@@ -39,22 +39,21 @@ export default function CTASection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: email }),
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Failed to subscribe');
+        throw new Error(data.error || "Failed to subscribe");
       }
 
       setIsSuccess(true);
       setEmail("");
-
     } catch (error: any) {
       setError(error.message || "Something went wrong. Please try again.");
     } finally {
@@ -139,7 +138,7 @@ export default function CTASection() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-white/80 font-medium text-sm mt-8"
           >
-            Join 10,000+ investors leveraging fractional ownership
+            Join Global investors leveraging fractional ownership
             <br />
             and digital real estate opportunities.
           </motion.p>
