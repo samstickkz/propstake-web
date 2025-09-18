@@ -5,7 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "./section-header";
 
-export default function HowItWorks() {
+interface HowItWorksProps {
+  id?: string;
+}
+
+export default function HowItWorks({ id }: HowItWorksProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,7 +44,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="bg-white md:py-24 py-18">
+    <section id={id} className="bg-white md:py-24 py-18">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

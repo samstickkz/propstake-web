@@ -7,7 +7,7 @@ import CTASection from "@/components/home/cta";
 import ReferralSection from "@/components/home/referral";
 import HowItWorks from "@/components/home/how-it-works";
 import WealthSecuritySection from "@/components/home/security";
-import Analytics from '@/components/Analytics' // Adjust the import path if needed
+import Analytics from "@/components/Analytics"; // Adjust the import path if needed
 
 // import InvestmentMetrics from "@/components/home/investment-metrics";
 // import PropertyInvestmentShowcase from "@/components/home/property-investment";

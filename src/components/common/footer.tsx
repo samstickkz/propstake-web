@@ -44,7 +44,7 @@ const footerLinks = [
     title: "Company",
     links: [
       { name: "About us", href: "/about" },
-      { name: "How it works", href: "/how-it-works" },
+      { name: "How it works", href: "#how-it-works" }, // This link is now an anchor
       { name: "Contact", href: "https://wa.link/ionezt" },
       { name: "Investors", href: "/investors" },
     ],
@@ -115,7 +115,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-[#E8E6F9] flex flex-col md:flex-row justify-between items-center">
           <p className="text-[#000929]/50 text-base">
-            &copy;2025 Realify. All rights reserved
+            &copy;2025 PropStake. All rights reserved
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             {socialLinks.map((social, index) => {
