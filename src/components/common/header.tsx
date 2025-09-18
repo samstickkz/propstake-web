@@ -29,7 +29,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   {
     label: "Investments",
-    href: "/investments",
+    href: "https://play.google.com/store/apps/details?id=com.prostake.app",
     hasDropdown: false,
     dropdownItems: [
       { label: "Stocks", href: "/investments/stocks" },
