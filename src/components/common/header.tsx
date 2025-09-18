@@ -37,18 +37,18 @@ const navItems: NavItem[] = [
       { label: "Crypto", href: "/investments/crypto" },
     ],
   },
-  {
-    label: "Automation",
-    href: "/automation",
-    hasDropdown: false,
-  },
-  {
-    label: "Visa Programs",
-    href: "https://travelexpore.com",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    hasDropdown: false,
-  },
+  // {
+  //   label: "Automation",
+  //   href: "/automation",
+  //   hasDropdown: false,
+  // },
+  // {
+  //   label: "Visa Programs",
+  //   href: "https://travelexpore.com",
+  //   target: "_blank",
+  //   rel: "noopener noreferrer",
+  //   hasDropdown: false,
+  // },
   {
     label: "Sell",
     href: "/sell",
@@ -57,8 +57,7 @@ const navItems: NavItem[] = [
     dropdownItems: [
       {
         label: "List Property",
-        href: "https://forms.gle/eEaFuv2WNRQ9Bt2x9",
-        target: "_blank",
+        href: "https://forms.gle/qBaWYdztNh8xp3rY9",
         rel: "noopener noreferrer",
       },
       { label: "Sell Business", href: "/sell/business" },
