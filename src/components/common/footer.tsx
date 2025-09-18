@@ -8,10 +8,14 @@ const footerLinks = [
   {
     title: "Investments",
     links: [
-      { name: "United Arab Emirates", href: "/investments/uae" },
-      { name: "Saudi Arabia", href: "/investments/saudi-arabia" },
-      { name: "USA", href: "/investments/usa" },
-      { name: "Others", href: "/investments/others" },
+      { name: "United Arab Emirates", href: "#" },
+      { name: "Saudi Arabia", href: "#" },
+      { name: "USA", href: "#" },
+      {
+        name: "Nigeria",
+        href: "https://www.google.com/search?q=npj+service+Apartment&oq=npj&gs_lcrp=EgZjaHJvbWUqBggEEEUYOzIGCAAQRRg9MgYIARBFGDkyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPTIGCAYQRRg80gEIMzIzMWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8&zx=1758153499130&no_sw_cr=1",
+      },
+      { name: "Others", href: "#" },
     ],
   },
   {
