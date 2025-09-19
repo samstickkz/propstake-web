@@ -69,9 +69,9 @@ export default function Hero() {
               variants={itemVariants}
               className="text-[1.125rem] md:text-xl text-black font-medium mb-8 md:max-w-2xl w-full"
             >
-              Invest onces, earn for a lifetime in Dollars.
+              Invest once, earn for a lifetime in dollars.
               <br />
-              Become a landlord with as little as N50,000
+              Become a landlord with as little as ₦50,000.{" "}
             </motion.p>
 
             <motion.div
