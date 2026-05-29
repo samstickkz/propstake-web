@@ -7,7 +7,9 @@ import { createClient } from "@supabase/supabase-js";
 // Privileged actions are still gated server-side by Postgres RLS +
 // the is_admin() check inside approve_listing / reject_listing.
 export const supabaseBrowser = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  process.env.NEXT_PUBLIC_SUPABASE_URL ??
+    "https://dfkqfyylqfkbgqxarmxm.supabase.co",
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    "sb_publishable_Z6UG3LsEiop9-K2sU3YZCQ_jOXnJCkX",
   { auth: { persistSession: true, autoRefreshToken: true } }
 );
