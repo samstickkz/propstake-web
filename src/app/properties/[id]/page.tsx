@@ -1,9 +1,56 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { supabase, type PropertyRow } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const { data } = await supabase
+    .from("properties")
+    .select("name, city, country, description, images, listing_type, price, total_cost, rent_period")
+    .eq("id", id)
+    .eq("status", "approved")
+    .maybeSingle();
+  const p = data as Pick<PropertyRow,
+    "name" | "city" | "country" | "description" | "images" | "listing_type" | "price" | "total_cost" | "rent_period"
+  > | null;
+  if (!p) return { title: "Property not found" };
+
+  const fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  const headline =
+    p.listing_type === "crowdfund"
+      ? `Invest in ${p.name}`
+      : p.listing_type === "rent"
+        ? `${p.name} for rent — ${fmt.format(p.price ?? 0)}${p.rent_period === "year" ? "/year" : "/month"}`
+        : `${p.name} for sale — ${fmt.format(p.price ?? 0)}`;
+  const desc =
+    p.description?.trim() ||
+    `${p.name ?? "Property"} in ${p.city ?? p.country ?? "the region"} — view full details on PropStake.`;
+  const img = p.images?.[0];
+  return {
+    title: p.name ?? "Property",
+    description: desc,
+    openGraph: {
+      title: headline,
+      description: desc,
+      type: "website",
+      images: img ? [{ url: img, width: 1200, height: 630, alt: p.name ?? "Property" }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: headline,
+      description: desc,
+      images: img ? [img] : undefined,
+    },
+  };
+}
 
 const money = (n: number | null | undefined) =>
   n == null

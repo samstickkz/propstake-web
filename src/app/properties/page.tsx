@@ -1,13 +1,47 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import {
   supabase,
   LISTING_TABS,
   type ListingType,
   type PropertyRow,
 } from "@/lib/supabase";
+import type { MapPoint } from "@/components/properties/listing-map";
+import ListingMap from "@/components/properties/listing-map-client";
 
 export const dynamic = "force-dynamic"; // always reflect live listings
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SP>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  const type: ListingType =
+    sp.type === "rent" || sp.type === "sale" ? sp.type : "crowdfund";
+  const titles: Record<ListingType, { title: string; desc: string }> = {
+    crowdfund: {
+      title: "Fractional property investment",
+      desc: "Browse and invest in vetted properties for as little as a fraction of the listing price — passive income from prime real estate.",
+    },
+    rent: {
+      title: "Properties for rent",
+      desc: "Apartments, villas and townhouses available to rent across Dubai, Abu Dhabi and the wider region. Filter by city, beds and price.",
+    },
+    sale: {
+      title: "Properties for sale",
+      desc: "Apartments, villas, and homes for sale. Browse verified listings from owners and agents — filter by city, beds and price range.",
+    },
+  };
+  const t = titles[type];
+  return {
+    title: t.title,
+    description: t.desc,
+    openGraph: { title: t.title, description: t.desc, type: "website" },
+    twitter: { card: "summary_large_image", title: t.title, description: t.desc },
+  };
+}
 
 const money = (n: number | null | undefined) =>
   n == null
@@ -158,16 +192,69 @@ export default async function PropertiesPage({
           Couldn’t load listings. Please try again.
         </p>
       ) : listings.length === 0 ? (
-        <p className="mt-16 text-center text-gray-500">
-          No {LISTING_TABS.find((t) => t.key === type)?.label.toLowerCase()}{" "}
-          listings{city ? ` in ${city}` : ""} yet.
-        </p>
-      ) : (
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {listings.map((p) => (
-            <ListingCard key={p.id} p={p} />
-          ))}
+        <div className="mx-auto mt-16 max-w-md rounded-2xl border border-dashed border-gray-300 px-6 py-12 text-center">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
+            <svg className="h-7 w-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 9.75L12 3l9 6.75M5.25 9.75v10.5h13.5V9.75M9.75 20.25v-6h4.5v6" />
+            </svg>
+          </div>
+          <h3 className="mt-4 text-base font-semibold text-gray-900">
+            No {LISTING_TABS.find((t) => t.key === type)?.label.toLowerCase()} listings{city ? ` in ${city}` : ""} — yet
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">
+            {city
+              ? "Try another city, or browse all locations."
+              : type === "crowdfund"
+                ? "New investment opportunities are added regularly. Check back soon."
+                : "Be among the first to see new listings as they come online."}
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {city && (
+              <Link
+                href={buildHref(currentSP, { city: undefined })}
+                className="rounded-full bg-emerald-600 px-4 py-1.5 text-sm font-semibold text-white hover:bg-emerald-700"
+              >
+                All cities
+              </Link>
+            )}
+            {type !== "crowdfund" && (
+              <Link
+                href="/properties"
+                className="rounded-full border border-gray-300 px-4 py-1.5 text-sm font-semibold text-gray-700 hover:border-gray-400"
+              >
+                Browse crowdfund
+              </Link>
+            )}
+          </div>
         </div>
+      ) : (
+        <>
+          {(() => {
+            const points: MapPoint[] = listings
+              .filter((p) => p.lat != null && p.lng != null)
+              .map((p) => ({
+                id: p.id,
+                name: p.name,
+                lat: p.lat as number,
+                lng: p.lng as number,
+                type: p.listing_type,
+                price: p.price,
+                total_cost: p.total_cost,
+                rent_period: p.rent_period,
+                city: p.city,
+              }));
+            return points.length > 0 ? (
+              <div className="mt-6">
+                <ListingMap points={points} />
+              </div>
+            ) : null;
+          })()}
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {listings.map((p) => (
+              <ListingCard key={p.id} p={p} />
+            ))}
+          </div>
+        </>
       )}
     </main>
   );

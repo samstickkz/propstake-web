@@ -39,6 +39,8 @@ export type PropertyRow = {
   property_kind: string | null;
   description: string | null;
   images: string[] | null;
+  lat: number | null;
+  lng: number | null;
   created_at: string;
 };
 

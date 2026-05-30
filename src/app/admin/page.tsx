@@ -5,6 +5,12 @@ import Image from "next/image";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 import type { PropertyRow } from "@/lib/supabase";
 
+// Admin queue rows include the owner's email + name so we can email them
+// after approve/reject (#19).
+type PendingRow = PropertyRow & {
+  owner: { email: string | null; fname: string | null } | null;
+};
+
 const money = (n: number | null | undefined) =>
   n == null
     ? "—"
@@ -22,7 +28,7 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [authErr, setAuthErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [pending, setPending] = useState<PropertyRow[]>([]);
+  const [pending, setPending] = useState<PendingRow[]>([]);
   const [acting, setActing] = useState<string | null>(null);
 
   // Confirm the signed-in user is an admin, then load the queue.
@@ -48,10 +54,10 @@ export default function AdminPage() {
   const loadQueue = async () => {
     const { data } = await supabaseBrowser
       .from("properties")
-      .select("*")
+      .select("*, owner:profiles!owner_id(email, fname)")
       .eq("status", "pending")
       .order("created_at", { ascending: false });
-    setPending((data as PropertyRow[] | null) ?? []);
+    setPending((data as PendingRow[] | null) ?? []);
   };
 
   useEffect(() => {
@@ -82,6 +88,7 @@ export default function AdminPage() {
 
   const decide = async (id: string, approve: boolean, reason?: string) => {
     setActing(id);
+    const target = pending.find((p) => p.id === id);
     const { error } = approve
       ? await supabaseBrowser.rpc("approve_listing", { p_property_id: id })
       : await supabaseBrowser.rpc("reject_listing", {
@@ -94,10 +101,47 @@ export default function AdminPage() {
       return;
     }
     setPending((cur) => cur.filter((p) => p.id !== id));
+
+    // Fire-and-forget email to the lister; no-op if RESEND_API_KEY isn't set.
+    if (target?.owner?.email) {
+      fetch("/api/listings/notify-decision", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          to: target.owner.email,
+          listerName: target.owner.fname,
+          listingName: target.name ?? "your listing",
+          listingId: id,
+          decision: approve ? "approved" : "rejected",
+          reason: reason ?? null,
+        }),
+      }).catch(() => {});
+    }
   };
 
   if (phase === "loading") {
-    return <Centered>Loading…</Centered>;
+    return (
+      <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+        <div className="h-8 w-44 animate-pulse rounded bg-gray-200" />
+        <div className="mt-2 h-4 w-32 animate-pulse rounded bg-gray-200" />
+        <div className="mt-6 space-y-4">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-4 rounded-2xl border border-gray-200 p-4 sm:flex-row"
+            >
+              <div className="h-28 w-full animate-pulse rounded-xl bg-gray-200 sm:w-40" />
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-2/3 animate-pulse rounded bg-gray-200" />
+                <div className="h-3 w-full animate-pulse rounded bg-gray-200" />
+                <div className="h-3 w-3/4 animate-pulse rounded bg-gray-200" />
+                <div className="h-5 w-24 animate-pulse rounded bg-gray-200" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    );
   }
 
   if (phase === "login") {
@@ -176,9 +220,17 @@ export default function AdminPage() {
       </div>
 
       {pending.length === 0 ? (
-        <p className="mt-16 text-center text-gray-500">
-          Nothing to review. 🎉
-        </p>
+        <div className="mx-auto mt-16 max-w-md rounded-2xl border border-dashed border-gray-300 px-6 py-12 text-center">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
+            <svg className="h-7 w-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 className="mt-4 text-base font-semibold text-gray-900">All caught up</h3>
+          <p className="mt-1 text-sm text-gray-500">
+            No listings waiting on review. New submissions will appear here automatically.
+          </p>
+        </div>
       ) : (
         <div className="mt-6 space-y-4">
           {pending.map((p) => (
