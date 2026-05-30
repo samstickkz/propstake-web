@@ -98,6 +98,19 @@ export default async function PropertyDetailPage({
   const p = data as PropertyRow | null;
   if (!p) notFound();
 
+  // Lister info (#11) — only for user-owned listings.
+  let agentName: string | null = null;
+  if (p.owner_id) {
+    const { data: agents } = await supabase.rpc("get_public_profile", {
+      p_id: p.owner_id,
+    });
+    const agent = (agents as { fname: string | null; lname: string | null }[] | null)?.[0];
+    if (agent) {
+      agentName =
+        [agent.fname, agent.lname].filter(Boolean).join(" ") || "an agent";
+    }
+  }
+
   const isCrowdfund = p.listing_type === "crowdfund";
   const isRent = p.listing_type === "rent";
   const funded =
@@ -168,6 +181,20 @@ export default async function PropertyDetailPage({
           </div>
           {p.description && (
             <p className="mt-5 leading-relaxed text-gray-700">{p.description}</p>
+          )}
+
+          {/* #11 lister attribution */}
+          {p.owner_id && agentName && (
+            <p className="mt-4 text-sm text-gray-600">
+              Listed by{" "}
+              <Link
+                href={`/agents/${p.owner_id}`}
+                className="font-semibold text-emerald-700 hover:underline"
+              >
+                {agentName}
+              </Link>{" "}
+              — see all their listings
+            </p>
           )}
 
           {/* #14 calculator below description */}

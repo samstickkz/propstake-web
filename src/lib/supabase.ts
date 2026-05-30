@@ -44,6 +44,9 @@ export type PropertyRow = {
   view_count: number | null;
   save_count: number | null;
   is_verified: boolean | null;
+  rejection_reason: string | null;
+  approved_at: string | null;
+  owner_id: string | null;
   created_at: string;
 };
 

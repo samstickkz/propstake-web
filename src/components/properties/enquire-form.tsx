@@ -27,6 +27,11 @@ export default function EnquireForm({
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErr(null);
+    if (!name.trim()) return setErr("Please enter your name.");
+    if (!email.trim() || !/.+@.+\..+/.test(email.trim()))
+      return setErr("Please enter a valid email.");
+    if (message.trim().length < 10)
+      return setErr("Add a short message so the lister knows what you're after.");
     setBusy(true);
     try {
       const res = await fetch("/api/listings/enquire", {
@@ -40,13 +45,16 @@ export default function EnquireForm({
           message: message.trim(),
         }),
       });
+      if (res.status === 413) throw new Error("Your message is too long — please shorten it.");
+      if (res.status === 400) throw new Error("Some required fields are missing — please review.");
+      if (res.status === 500) throw new Error("We couldn't save your enquiry. Please try again in a moment.");
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
-        throw new Error(j.error ?? "Failed to send");
+        throw new Error(j.error ?? "Couldn't send right now — please retry.");
       }
       setDone(true);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Something went wrong";
+      const msg = e instanceof Error ? e.message : "Couldn't reach the server — check your connection and retry.";
       setErr(msg);
     } finally {
       setBusy(false);
