@@ -268,6 +268,9 @@ function ListingCard({ p }: { p: PropertyRow }) {
     p.total_cost && p.total_cost > 0
       ? Math.round(((p.amount_funded ?? 0) / p.total_cost) * 100)
       : 0;
+  const verified = p.is_verified === true;
+  const views = p.view_count ?? 0;
+  const saves = p.save_count ?? 0;
 
   return (
     <Link
@@ -288,6 +291,28 @@ function ListingCard({ p }: { p: PropertyRow }) {
           <span className="absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white">
             {isRent ? "For rent" : "For sale"}
           </span>
+        )}
+        {verified && (
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 shadow">
+            <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.7-9.3a1 1 0 00-1.4-1.4L9 10.6 7.7 9.3a1 1 0 10-1.4 1.4l2 2a1 1 0 001.4 0l4-4z" clipRule="evenodd" />
+            </svg>
+            Verified
+          </span>
+        )}
+        {(views > 0 || saves > 0) && (
+          <div className="absolute bottom-3 left-3 flex gap-1.5">
+            {views > 0 && (
+              <span className="rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-medium text-white">
+                {views.toLocaleString()} {views === 1 ? "view" : "views"}
+              </span>
+            )}
+            {saves > 0 && (
+              <span className="rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-medium text-white">
+                ♥ {saves.toLocaleString()}
+              </span>
+            )}
+          </div>
         )}
       </div>
       <div className="p-4">

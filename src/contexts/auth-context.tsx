@@ -1,75 +1,85 @@
 "use client";
 
+// #17 — real auth context backed by Supabase. Replaces the old dead-backend
+// cookie stub. Exposes user, signIn, signUp, signOut, and a ready flag so UI
+// can avoid a flash-of-signed-in-state on first load.
+
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
-  ReactNode,
+  type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
-import { getCookie, setCookie, deleteCookie } from "cookies-next"; // Ensure 'cookies-next' is installed
+import type { User } from "@supabase/supabase-js";
+import { supabaseBrowser } from "@/lib/supabase-browser";
 
-interface User {
-  role: "attendees" | "administrator" | null;
-}
-
-interface AuthContextType {
+type AuthState = {
   user: User | null;
-  login: (role: "attendees" | "administrator") => void;
-  logout: () => void;
-}
+  ready: boolean;
+  signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+  signUp: (
+    email: string,
+    password: string,
+    fname?: string,
+  ) => Promise<{ error: string | null }>;
+  signOut: () => Promise<void>;
+};
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthState | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Load user from cookies safely
-    const storedUser = getCookie("user");
-
-    if (storedUser && typeof storedUser === "string") {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Error parsing user cookie:", error);
-      }
-    }
+    supabaseBrowser.auth.getUser().then(({ data }) => {
+      setUser(data.user ?? null);
+      setReady(true);
+    });
+    const { data: sub } = supabaseBrowser.auth.onAuthStateChange(
+      (_event, session) => setUser(session?.user ?? null),
+    );
+    return () => sub.subscription.unsubscribe();
   }, []);
 
-  const login = (role: "attendees" | "administrator") => {
-    const userData = { role };
+  const signIn = useCallback(async (email: string, password: string) => {
+    const { error } = await supabaseBrowser.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
+    return { error: error?.message ?? null };
+  }, []);
 
-    // Store user in cookies (instead of localStorage)
-    setCookie("user", JSON.stringify(userData), { path: "/", secure: true });
+  const signUp = useCallback(
+    async (email: string, password: string, fname?: string) => {
+      const { error } = await supabaseBrowser.auth.signUp({
+        email: email.trim(),
+        password,
+        options: { data: fname ? { fname } : undefined },
+      });
+      return { error: error?.message ?? null };
+    },
+    [],
+  );
 
-    setUser(userData);
-
-    // Redirect to the correct dashboard
-    router.push(
-      role === "attendees" ? "/dashboard/attendees" : "/dashboard/administrator"
-    );
-  };
-
-  const logout = () => {
-    deleteCookie("user");
-    setUser(null);
-    router.push("/auth");
-  };
+  const signOut = useCallback(async () => {
+    await supabaseBrowser.auth.signOut();
+    router.refresh();
+  }, [router]);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, ready, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export function useAuth(): AuthState {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
+  return ctx;
+}

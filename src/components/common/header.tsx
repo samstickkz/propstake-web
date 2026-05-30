@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import UserMenu from "@/components/common/user-menu";
 
 // === START: CHANGE 1 (Update Type Definitions) ===
 // Create a specific type for dropdown items
@@ -226,6 +227,9 @@ export default function Navbar() {
                   </motion.div>
                 )}
               </div>
+
+              {/* Auth menu (#17) */}
+              <UserMenu />
 
               {/* Download App Button */}
               <Link

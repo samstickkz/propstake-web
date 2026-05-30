@@ -41,6 +41,9 @@ export type PropertyRow = {
   images: string[] | null;
   lat: number | null;
   lng: number | null;
+  view_count: number | null;
+  save_count: number | null;
+  is_verified: boolean | null;
   created_at: string;
 };
 
