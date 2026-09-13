@@ -101,7 +101,7 @@ export default async function AgentPage({
           )}
         </div>
         <div className="flex-1">
-          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">{name}</h1>
+          <h1 className="font-display text-2xl font-semibold text-gray-900 sm:text-3xl">{name}</h1>
           <p className="mt-1 text-sm text-gray-500">
             On PropStake since {memberSince} ·{" "}
             <span className="font-medium text-gray-700">
@@ -128,7 +128,7 @@ export default async function AgentPage({
               <Link
                 key={p.id}
                 href={`/properties/${p.id}`}
-                className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:shadow-md"
+                className="card-lift group overflow-hidden rounded-2xl border border-gray-200 bg-white"
               >
                 <div className="relative h-44 w-full bg-gray-100">
                   {img && (
@@ -145,7 +145,7 @@ export default async function AgentPage({
                   </span>
                 </div>
                 <div className="p-4">
-                  <h3 className="truncate text-base font-semibold text-gray-900">
+                  <h3 className="font-display truncate text-lg font-semibold text-gray-900">
                     {p.name}
                   </h3>
                   <p className="truncate text-sm text-gray-500">

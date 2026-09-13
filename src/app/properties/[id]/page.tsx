@@ -211,7 +211,7 @@ export default async function PropertyDetailPage({
         <div className="flex-1">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">{p.name}</h1>
+              <h1 className="font-display text-3xl font-semibold text-gray-900 sm:text-4xl">{p.name}</h1>
               <p className="mt-1 text-gray-500">{p.location}</p>
             </div>
             <FavoriteButton propertyId={p.id} />

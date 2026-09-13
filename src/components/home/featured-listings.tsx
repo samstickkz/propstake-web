@@ -35,7 +35,7 @@ export default async function FeaturedListings() {
             <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
               Live on PropStake
             </p>
-            <h2 className="mt-1 text-2xl font-bold text-gray-900 sm:text-3xl">
+            <h2 className="font-display mt-1 text-3xl font-semibold text-gray-900 sm:text-4xl">
               Featured properties
             </h2>
             <p className="mt-1 max-w-xl text-gray-500">
@@ -64,7 +64,7 @@ export default async function FeaturedListings() {
               <Link
                 key={p.id}
                 href={`/properties/${p.id}`}
-                className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition hover:shadow-md"
+                className="card-lift group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200"
               >
                 <div className="relative h-44 w-full bg-gray-100">
                   {img && (
@@ -81,7 +81,7 @@ export default async function FeaturedListings() {
                   </span>
                 </div>
                 <div className="p-4">
-                  <h3 className="truncate text-base font-semibold text-gray-900">
+                  <h3 className="font-display truncate text-lg font-semibold text-gray-900">
                     {p.name}
                   </h3>
                   <p className="truncate text-sm text-gray-500">

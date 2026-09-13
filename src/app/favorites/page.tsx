@@ -66,7 +66,7 @@ export default function FavoritesPage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+      <h1 className="font-display text-3xl font-semibold text-gray-900 sm:text-4xl">
         Favorites
       </h1>
       <p className="mt-1 text-gray-500">
@@ -99,7 +99,7 @@ export default function FavoritesPage() {
             <Link
               key={p.id}
               href={`/properties/${p.id}`}
-              className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:shadow-lg"
+              className="card-lift group overflow-hidden rounded-2xl border border-gray-200 bg-white"
             >
               <div className="relative h-44 w-full bg-gray-100">
                 {p.images?.[0] && (
@@ -113,7 +113,7 @@ export default function FavoritesPage() {
                 )}
               </div>
               <div className="p-4">
-                <h3 className="truncate text-base font-semibold text-gray-900">
+                <h3 className="font-display truncate text-lg font-semibold text-gray-900">
                   {p.name}
                 </h3>
                 <p className="truncate text-sm text-gray-500">

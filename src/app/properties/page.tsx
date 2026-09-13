@@ -114,7 +114,7 @@ export default async function PropertiesPage({
         </Link>
       </div>
 
-      <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+      <h1 className="font-display text-3xl font-semibold text-gray-900 sm:text-4xl">
         Properties
       </h1>
       <p className="mt-1 text-gray-500">
@@ -279,7 +279,7 @@ function ListingCard({ p }: { p: PropertyRow }) {
   return (
     <Link
       href={`/properties/${p.id}`}
-      className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition hover:shadow-lg"
+      className="card-lift group overflow-hidden rounded-2xl border border-gray-200 bg-white"
     >
       <div className="relative h-48 w-full bg-gray-100">
         {img ? (
@@ -325,7 +325,7 @@ function ListingCard({ p }: { p: PropertyRow }) {
           {p.property_kind && <span className="capitalize">{p.property_kind}</span>}
           <span>{p.city ?? p.country}</span>
         </div>
-        <h3 className="mt-1 truncate text-base font-semibold text-gray-900">
+        <h3 className="font-display mt-1 truncate text-lg font-semibold text-gray-900">
           {p.name}
         </h3>
         <p className="truncate text-sm text-gray-500">{p.location}</p>

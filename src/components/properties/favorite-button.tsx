@@ -68,7 +68,7 @@ export default function FavoriteButton({
       className={`inline-flex ${dim} items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition hover:scale-105 disabled:opacity-60`}
     >
       <svg
-        className={`${icon} ${saved ? "fill-rose-500 text-rose-500" : "fill-none text-gray-400"}`}
+        className={`heart-pop ${icon} ${saved ? "is-saved fill-rose-500 text-rose-500" : "fill-none text-gray-400"}`}
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth="2"

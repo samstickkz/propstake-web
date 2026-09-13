@@ -1,8 +1,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Sprint 4 — brand tokens (#24). Centralized so the whole site shifts in
+   one place. Currently emerald-based but warmer than default Tailwind. */
+:root {
+  --ps-brand: #0a8a5a;          /* emerald-700ish, slightly warmer */
+  --ps-brand-strong: #066e47;
+  --ps-brand-soft: #ebf9f2;
+  --ps-ink: #0c1814;
+  --ps-ink-soft: #4a5a55;
+  --ps-line: #e6ebe8;
+}
+
+/* #23 — serif headline class for property names + page H1s */
+.font-display {
+  font-family: "Fraunces", "Times New Roman", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* #25 — microinteractions */
+.card-lift {
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 30px -10px rgba(10, 60, 40, 0.18),
+    0 4px 8px -4px rgba(10, 60, 40, 0.08);
+}
+
+.heart-pop {
+  transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.heart-pop.is-saved {
+  animation: heartPop 320ms ease;
+}
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.fade-rise-enter {
+  animation: fadeRise 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
 
 @font-face {
   font-family: "Satoshi";
