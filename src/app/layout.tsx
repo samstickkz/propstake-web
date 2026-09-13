@@ -87,14 +87,6 @@ export const metadata: Metadata = {
       "Invest in high-growth properties across global markets and earn passive income effortlessly.",
     url: "https://www.propstake.org",
     siteName: "PropStake",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "PropStake - Global Real Estate Investment Platform",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -103,7 +95,6 @@ export const metadata: Metadata = {
     title: "PropStake - Global Real Estate Investment",
     description:
       "Invest in high-growth properties across global markets and earn passive income effortlessly.",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -116,9 +107,33 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://www.propstake.org",
-  },
+  // No site-wide canonical here: it would be inherited by every page and tell
+  // search engines each listing is a duplicate of the homepage. Pages set
+  // their own `alternates.canonical`.
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.propstake.org/#organization",
+      name: "PropStake",
+      url: "https://www.propstake.org",
+      logo: "https://ik.imagekit.io/4pztqoubze/landing-page/Property%20Stake%20with%20write%20up%201.png?updatedAt=1741191496767",
+      sameAs: [
+        "https://www.linkedin.com/company/propstake/",
+        "https://play.google.com/store/apps/details?id=com.prostake.app",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.propstake.org/#website",
+      name: "PropStake",
+      url: "https://www.propstake.org",
+      publisher: { "@id": "https://www.propstake.org/#organization" },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -129,26 +144,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <AuthProvider>{children}</AuthProvider>
         <Analytics />
 
-        {/* 👇 Tawk.to Script ghg*/}
+        {/* Replio AI support chat (PropStake tenant). */}
         <Script
-          id="tawk-to"
+          id="replio-widget"
+          src="https://replio.live/widget.js"
+          data-replio="duoW3uB9eyB27VlH"
+          data-theme="light"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-              (function(){
-              var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-              s1.async=true;
-              s1.src='https://embed.tawk.to/68b34731835f92191f4a84da/1j5em6e6c';
-              s1.charset='UTF-8';
-              s1.setAttribute('crossorigin','*');
-              s0.parentNode.insertBefore(s1,s0);
-              })();
-            `,
-          }}
         />
       </body>
     </html>

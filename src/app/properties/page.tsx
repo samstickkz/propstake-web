@@ -38,6 +38,10 @@ export async function generateMetadata({
   return {
     title: t.title,
     description: t.desc,
+    // One canonical per tab; city/sort filters collapse onto it.
+    alternates: {
+      canonical: type === "crowdfund" ? "/properties" : `/properties?type=${type}`,
+    },
     openGraph: { title: t.title, description: t.desc, type: "website" },
     twitter: { card: "summary_large_image", title: t.title, description: t.desc },
   };

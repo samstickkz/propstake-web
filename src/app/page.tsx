@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import PageLayout from "@/components/layouts/page-layout";
 import Hero from "@/components/home/hero";
 import FeaturedListings from "@/components/home/featured-listings";
@@ -10,6 +11,10 @@ import WealthSecuritySection from "@/components/home/security";
 import Analytics from "@/components/Analytics";
 
 export const dynamic = "force-dynamic"; // FeaturedListings reads live Supabase
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

@@ -54,6 +54,7 @@ export async function generateMetadata({
   const name = [agent.fname, agent.lname].filter(Boolean).join(" ") || "Agent";
   return {
     title: `${name} on PropStake`,
+    alternates: { canonical: `/agents/${id}` },
     description: `${agent.listing_count} active ${
       agent.listing_count === 1 ? "listing" : "listings"
     } from ${name}.`,

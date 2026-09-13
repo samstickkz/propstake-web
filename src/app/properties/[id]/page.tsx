@@ -65,6 +65,7 @@ export async function generateMetadata({
   return {
     title: p.name ?? "Property",
     description: desc,
+    alternates: { canonical: `/properties/${id}` },
     openGraph: {
       title: headline,
       description: desc,
@@ -122,8 +123,51 @@ export default async function PropertyDetailPage({
   const saves = p.save_count ?? 0;
   const verified = p.is_verified === true;
 
+  // Structured data so search engines can read the listing's price and place.
+  const offerPrice = isCrowdfund ? p.total_cost : p.price;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: p.name ?? "Property",
+    description: p.description ?? undefined,
+    url: `https://www.propstake.org/properties/${p.id}`,
+    image: p.images?.length ? p.images : undefined,
+    datePosted: p.approved_at ?? p.created_at,
+    about: {
+      "@type": "Accommodation",
+      numberOfBedrooms: p.bed_amount ?? undefined,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: p.location ?? undefined,
+        addressLocality: p.city ?? undefined,
+        addressCountry: p.country ?? undefined,
+      },
+      geo:
+        p.lat != null && p.lng != null
+          ? { "@type": "GeoCoordinates", latitude: p.lat, longitude: p.lng }
+          : undefined,
+    },
+    offers:
+      offerPrice != null
+        ? {
+            "@type": "Offer",
+            price: offerPrice,
+            priceCurrency: "USD",
+            businessFunction: isRent
+              ? "http://purl.org/goodrelations/v1#LeaseOut"
+              : "http://purl.org/goodrelations/v1#Sell",
+          }
+        : undefined,
+  };
+
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <ViewTracker propertyId={p.id} />
 
       <Link
