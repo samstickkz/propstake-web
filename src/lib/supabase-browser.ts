@@ -8,8 +8,8 @@ import { createClient } from "@supabase/supabase-js";
 // the is_admin() check inside approve_listing / reject_listing.
 export const supabaseBrowser = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL ??
-    "https://dfkqfyylqfkbgqxarmxm.supabase.co",
+    "https://doqlxpzksknbbbseazzg.supabase.co",
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-    "sb_publishable_Z6UG3LsEiop9-K2sU3YZCQ_jOXnJCkX",
+    "sb_publishable_ydHtYk15cAqPETW7dUSznw_t_F-eZPW",
   { auth: { persistSession: true, autoRefreshToken: true } }
 );
