@@ -19,8 +19,24 @@ export async function generateMetadata({
   searchParams: Promise<SP>;
 }): Promise<Metadata> {
   const sp = await searchParams;
-  const type: ListingType =
-    sp.type === "rent" || sp.type === "sale" ? sp.type : "crowdfund";
+  const type: ListingType | null =
+    sp.type === "rent" || sp.type === "sale" || sp.type === "crowdfund"
+      ? sp.type
+      : null;
+  if (!type) {
+    return {
+      title: "Properties to invest in, rent or buy",
+      description:
+        "Browse every PropStake listing in one place: fractional investments, homes to rent and properties for sale. Filter by type, city and price.",
+      alternates: { canonical: "/properties" },
+      openGraph: {
+        title: "Properties to invest in, rent or buy",
+        description:
+          "Every PropStake listing in one place. Filter by type, city and price.",
+        type: "website",
+      },
+    };
+  }
   const titles: Record<ListingType, { title: string; desc: string }> = {
     crowdfund: {
       title: "Fractional property investment",
@@ -40,9 +56,7 @@ export async function generateMetadata({
     title: t.title,
     description: t.desc,
     // One canonical per tab; city/sort filters collapse onto it.
-    alternates: {
-      canonical: type === "crowdfund" ? "/properties" : `/properties?type=${type}`,
-    },
+    alternates: { canonical: `/properties?type=${type}` },
     openGraph: { title: t.title, description: t.desc, type: "website" },
     twitter: { card: "summary_large_image", title: t.title, description: t.desc },
   };
@@ -75,8 +89,13 @@ export default async function PropertiesPage({
   searchParams: Promise<SP>;
 }) {
   const sp = await searchParams;
-  const type: ListingType =
-    sp.type === "rent" || sp.type === "sale" ? sp.type : "crowdfund";
+  // No type means the mixed feed: investments, rentals and sales together.
+  // Someone looking for a home should not have to pick our product category
+  // before they can see anything.
+  const type: ListingType | null =
+    sp.type === "rent" || sp.type === "sale" || sp.type === "crowdfund"
+      ? sp.type
+      : null;
   const city = sp.city;
   const sort = sp.sort ?? "newest";
   const priceCol = type === "crowdfund" ? "total_cost" : "price";
@@ -84,8 +103,8 @@ export default async function PropertiesPage({
   let query = supabase
     .from("properties")
     .select("*")
-    .eq("status", "approved")
-    .eq("listing_type", type);
+    .eq("status", "approved");
+  if (type) query = query.eq("listing_type", type);
   if (city) query = query.eq("city", city);
   if (sort === "price_asc") query = query.order(priceCol, { ascending: true });
   else if (sort === "price_desc")
@@ -96,16 +115,17 @@ export default async function PropertiesPage({
   const listings = (data as PropertyRow[] | null) ?? [];
 
   // Distinct cities for the active type → filter chips.
-  const { data: cityRows } = await supabase
+  let cityQuery = supabase
     .from("properties")
     .select("city")
-    .eq("status", "approved")
-    .eq("listing_type", type);
+    .eq("status", "approved");
+  if (type) cityQuery = cityQuery.eq("listing_type", type);
+  const { data: cityRows } = await cityQuery;
   const cities = Array.from(
     new Set((cityRows ?? []).map((r) => r.city).filter(Boolean) as string[])
   ).sort();
 
-  const currentSP: SP = { type, city, sort };
+  const currentSP: SP = { type: type ?? undefined, city, sort };
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -124,11 +144,11 @@ export default async function PropertiesPage({
 
       {/* Type tabs */}
       <div className="mt-6 inline-flex rounded-xl bg-gray-100 p-1">
-        {LISTING_TABS.map((t) => {
-          const active = t.key === type;
+        {[{ key: undefined, label: "All" }, ...LISTING_TABS].map((t) => {
+          const active = t.key === (type ?? undefined);
           return (
             <Link
-              key={t.key}
+              key={t.key ?? "all"}
               href={buildHref({}, { type: t.key })}
               className={`rounded-lg px-5 py-2 text-sm font-semibold transition ${
                 active

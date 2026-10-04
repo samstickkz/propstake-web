@@ -28,6 +28,16 @@ export default function ImageGallery({
     [safe.length]
   );
 
+  // The hero cycles on its own so a listing shows more than one room
+  // before anyone interacts. Opening the lightbox stops it, and so does a
+  // manual pick (see onPointerDown on the thumbnails).
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    if (open || paused || safe.length < 2) return;
+    const t = setInterval(next, 4000);
+    return () => clearInterval(t);
+  }, [open, paused, safe.length, next]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -46,29 +56,45 @@ export default function ImageGallery({
       <div className="grid gap-3 sm:grid-cols-2">
         <button
           type="button"
-          onClick={() => {
-            setIdx(0);
-            setOpen(true);
-          }}
+          onClick={() => setOpen(true)}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
           className="relative h-72 overflow-hidden rounded-2xl bg-gray-100 sm:col-span-2"
         >
-          <Image
-            src={safe[0]}
-            alt={alt}
-            fill
-            sizes="100vw"
-            className="object-cover transition hover:scale-[1.02]"
-            priority
-          />
+          {safe.map((src, i) => (
+            <Image
+              key={src}
+              src={src}
+              alt={i === idx ? alt : ""}
+              fill
+              sizes="100vw"
+              priority={i === 0}
+              className={`object-cover transition-opacity duration-700 ${
+                i === idx ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           {badge && (
             <span className="absolute left-4 top-4 rounded-full bg-black/60 px-4 py-1.5 text-sm font-semibold text-white">
               {badge}
             </span>
           )}
           {safe.length > 1 && (
-            <span className="absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white">
-              View all {safe.length} photos
-            </span>
+            <>
+              <span className="absolute bottom-3 right-3 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white">
+                View all {safe.length} photos
+              </span>
+              <span className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-1.5">
+                {safe.map((src, i) => (
+                  <span
+                    key={src}
+                    className={`h-1.5 rounded-full transition-all ${
+                      i === idx ? "w-5 bg-white" : "w-1.5 bg-white/55"
+                    }`}
+                  />
+                ))}
+              </span>
+            </>
           )}
         </button>
         {safe.slice(1, 3).map((src, i) => (
