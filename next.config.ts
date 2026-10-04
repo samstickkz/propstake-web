@@ -2,7 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    // Listing photos live in Supabase Storage. Without this entry next/image
+    // refuses the URL and every listing renders a blank tile.
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
       {
         protocol: "https",
         hostname: "ik.imagekit.io",

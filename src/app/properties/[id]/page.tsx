@@ -1,7 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { supabase, type PropertyRow } from "@/lib/supabase";
+import {
+  supabase,
+  type PropertyRow,
+  priceLabel,
+  FIT_OUT_LABELS,
+} from "@/lib/supabase";
 import ImageGallery from "@/components/properties/image-gallery";
 import YieldCalculator from "@/components/properties/yield-calculator";
 import EnquireForm from "@/components/properties/enquire-form";
@@ -218,6 +223,8 @@ export default async function PropertyDetailPage({
           </div>
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm text-gray-600">
             <span>{p.bed_amount ?? 0} bedrooms</span>
+            {p.area_sqm && <span>{p.area_sqm} m²</span>}
+            {p.fit_out && <span>{FIT_OUT_LABELS[p.fit_out]}</span>}
             {p.property_kind && (
               <span className="capitalize">{p.property_kind}</span>
             )}
@@ -297,23 +304,46 @@ export default async function PropertyDetailPage({
                     <dd className="font-medium">{p.total_investors ?? 0}</dd>
                   </div>
                 </dl>
-                <button className="mt-5 w-full rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white hover:bg-emerald-700">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.prostake.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 block w-full rounded-xl bg-emerald-600 py-3 text-center text-sm font-semibold text-white hover:bg-emerald-700"
+                >
                   Invest in the app
-                </button>
+                </a>
+                <p className="mt-2 text-center text-xs text-gray-500">
+                  Investments are completed in the PropStake mobile app.
+                </p>
               </>
             ) : (
               <>
                 <p className="text-sm text-gray-500">
-                  {isRent ? "Rent" : "Asking price"}
+                  {p.price_on_request
+                    ? "Price"
+                    : isRent
+                      ? "Rent"
+                      : "Asking price"}
                 </p>
                 <p className="text-2xl font-bold text-emerald-700">
-                  {money(p.price)}
-                  {isRent && (
+                  {priceLabel(p)}
+                  {isRent && !p.price_on_request && (
                     <span className="text-base font-medium text-gray-500">
                       {p.rent_period === "year" ? " /year" : " /month"}
                     </span>
                   )}
                 </p>
+                {!isRent && !p.price_on_request && p.price && p.area_sqm ? (
+                  <p className="mt-1 text-xs text-gray-500">
+                    {money(Math.round(p.price / Number(p.area_sqm)))} per m²
+                  </p>
+                ) : null}
+                {p.price_on_request && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    The seller has not published a price for this unit. Send an
+                    enquiry and we will come back with the current price list.
+                  </p>
+                )}
               </>
             )}
           </div>

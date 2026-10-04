@@ -35,6 +35,9 @@ export type PropertyRow = {
   return_percentage_five_years: number | null;
   total_investors: number | null;
   price: number | null;
+  price_on_request: boolean | null;
+  area_sqm: number | null;
+  fit_out: "white_frame" | "renovated" | "fully_furnished" | null;
   rent_period: "month" | "year" | null;
   property_kind: string | null;
   description: string | null;
@@ -57,3 +60,23 @@ export const LISTING_TABS: { key: ListingType; label: string }[] = [
   { key: "rent", label: "Rent" },
   { key: "sale", label: "Buy" },
 ];
+
+// A seller who has not released a price still gets a listing; the UI says so
+// rather than rendering $0.
+export const FIT_OUT_LABELS: Record<string, string> = {
+  white_frame: "White Frame (shell)",
+  renovated: "Renovated, unfurnished",
+  fully_furnished: "Fully furnished",
+};
+
+export const priceLabel = (p: {
+  price?: number | null;
+  price_on_request?: boolean | null;
+}) =>
+  p.price_on_request || p.price == null
+    ? "Price on request"
+    : new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+      }).format(p.price);

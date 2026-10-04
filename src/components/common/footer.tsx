@@ -6,23 +6,18 @@ import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 
 const footerLinks = [
   {
-    title: "Investments",
+    title: "Browse",
     links: [
-      { name: "United Arab Emirates", href: "#" },
-      { name: "Saudi Arabia", href: "#" },
-      { name: "USA", href: "#" },
-      {
-        name: "Nigeria",
-        href: "https://www.google.com/search?q=npj+service+Apartment&oq=npj&gs_lcrp=EgZjaHJvbWUqBggEEEUYOzIGCAAQRRg9MgYIARBFGDkyBggCEEUYOzIGCAMQRRg7MgYIBBBFGDsyBggFEEUYPTIGCAYQRRg80gEIMzIzMWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8&zx=1758153499130&no_sw_cr=1",
-      },
-      { name: "Others", href: "#" },
+      { name: "Invest", href: "/properties?type=crowdfund" },
+      { name: "Rent", href: "/properties?type=rent" },
+      { name: "Buy", href: "/properties?type=sale" },
     ],
   },
   {
-    title: "Sell",
+    title: "Markets",
     links: [
-      { name: "Exit Windows", href: "/sell/exit-windows" },
-      { name: "Sell your Property", href: "/sell/property" },
+      { name: "Batumi, Georgia", href: "/properties?city=Batumi" },
+      { name: "United Arab Emirates", href: "/properties?city=Dubai" },
     ],
   },
   {
@@ -33,20 +28,12 @@ const footerLinks = [
     ],
   },
   {
-    title: "Learn",
-    links: [
-      { name: "Blog", href: "/blog" },
-      { name: "FAQ", href: "/faq" },
-      { name: "Guides", href: "/guides" },
-    ],
-  },
-  {
     title: "Company",
     links: [
       { name: "About us", href: "/about" },
-      { name: "How it works", href: "#how-it-works" }, // This link is now an anchor
+      { name: "FAQ", href: "/faq" },
+      { name: "How it works", href: "/#how-it-works" },
       { name: "Contact", href: "https://wa.link/ionezt" },
-      { name: "Investors", href: "/investors" },
     ],
   },
 ];

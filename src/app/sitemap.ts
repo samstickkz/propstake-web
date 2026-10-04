@@ -13,6 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE}/properties`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${SITE}/properties?type=rent`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${SITE}/properties?type=sale`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${SITE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ];
 
   // A backend outage must never take the sitemap down with it: fall back to

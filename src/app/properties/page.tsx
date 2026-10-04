@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import {
   supabase,
   LISTING_TABS,
+  priceLabel,
   type ListingType,
   type PropertyRow,
 } from "@/lib/supabase";
@@ -322,6 +323,7 @@ function ListingCard({ p }: { p: PropertyRow }) {
       <div className="p-4">
         <div className="flex items-center gap-3 text-xs text-gray-500">
           <span>{p.bed_amount ?? 0} beds</span>
+          {p.area_sqm && <span>{p.area_sqm} m²</span>}
           {p.property_kind && <span className="capitalize">{p.property_kind}</span>}
           <span>{p.city ?? p.country}</span>
         </div>
@@ -351,8 +353,8 @@ function ListingCard({ p }: { p: PropertyRow }) {
           </div>
         ) : (
           <p className="mt-3 text-lg font-bold text-emerald-700">
-            {money(p.price)}
-            {isRent && (
+            {priceLabel(p)}
+            {isRent && !p.price_on_request && (
               <span className="text-sm font-medium text-gray-500">
                 {p.rent_period === "year" ? " /year" : " /month"}
               </span>

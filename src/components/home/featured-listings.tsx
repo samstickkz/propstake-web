@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { supabase, type PropertyRow } from "@/lib/supabase";
+import { supabase, type PropertyRow , priceLabel } from "@/lib/supabase";
 
 const money = (n: number | null | undefined) =>
   n == null
@@ -18,7 +18,7 @@ export default async function FeaturedListings() {
   const { data } = await supabase
     .from("properties")
     .select(
-      "id, name, location, city, listing_type, price, total_cost, amount_funded, rent_period, images"
+      "id, name, location, city, listing_type, price, price_on_request, area_sqm, total_cost, amount_funded, rent_period, images"
     )
     .eq("status", "approved")
     .order("created_at", { ascending: false })
@@ -106,8 +106,8 @@ export default async function FeaturedListings() {
                     </div>
                   ) : (
                     <p className="mt-3 text-base font-bold text-emerald-700">
-                      {money(p.price)}
-                      {isRent && (
+                      {priceLabel(p)}
+                      {isRent && !p.price_on_request && (
                         <span className="text-sm font-medium text-gray-500">
                           {p.rent_period === "year" ? " /year" : " /month"}
                         </span>
