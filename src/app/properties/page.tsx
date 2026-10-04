@@ -346,10 +346,13 @@ function ListingCard({ p }: { p: PropertyRow }) {
                 style={{ width: `${Math.min(funded, 100)}%` }}
               />
             </div>
-            <p className="mt-2 text-xs text-gray-500">
-              {(p.return_percentage_per_year ?? 0).toFixed(0)}% / yr ·{" "}
-              {(p.return_percentage_five_years ?? 0).toFixed(0)}% / 5 yr
-            </p>
+            {p.return_percentage_per_year != null ||
+            p.return_percentage_five_years != null ? (
+              <p className="mt-2 text-xs text-gray-500">
+                {(p.return_percentage_per_year ?? 0).toFixed(0)}% / yr ·{" "}
+                {(p.return_percentage_five_years ?? 0).toFixed(0)}% / 5 yr
+              </p>
+            ) : null}
           </div>
         ) : (
           <p className="mt-3 text-lg font-bold text-emerald-700">

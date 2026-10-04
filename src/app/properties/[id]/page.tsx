@@ -287,18 +287,22 @@ export default async function PropertyDetailPage({
                   {funded}% of {money(p.total_cost)} target
                 </p>
                 <dl className="mt-4 space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <dt className="text-gray-500">Yearly return</dt>
-                    <dd className="font-medium">
-                      {(p.return_percentage_per_year ?? 0).toFixed(0)}%
-                    </dd>
-                  </div>
-                  <div className="flex justify-between">
-                    <dt className="text-gray-500">5-year return</dt>
-                    <dd className="font-medium">
-                      {(p.return_percentage_five_years ?? 0).toFixed(0)}%
-                    </dd>
-                  </div>
+                  {p.return_percentage_per_year != null && (
+                    <div className="flex justify-between">
+                      <dt className="text-gray-500">Yearly return</dt>
+                      <dd className="font-medium">
+                        {p.return_percentage_per_year.toFixed(0)}%
+                      </dd>
+                    </div>
+                  )}
+                  {p.return_percentage_five_years != null && (
+                    <div className="flex justify-between">
+                      <dt className="text-gray-500">5-year return</dt>
+                      <dd className="font-medium">
+                        {p.return_percentage_five_years.toFixed(0)}%
+                      </dd>
+                    </div>
+                  )}
                   <div className="flex justify-between">
                     <dt className="text-gray-500">Investors</dt>
                     <dd className="font-medium">{p.total_investors ?? 0}</dd>
